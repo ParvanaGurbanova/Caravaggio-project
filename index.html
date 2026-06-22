@@ -1,35 +1,199 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Caravaggio Project</title>
+<meta charset="UTF-8">
+<title>Caravaggio Project</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    scroll-behavior: smooth;
+}
+
+/* NAVBAR */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #1f2937;
+    padding: 12px;
+    text-align: center;
+    z-index: 1000;
+}
+
+nav a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* SECTIONS */
+section {
+    width: 80%;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    margin-top: 80px;
+    border-radius: 10px;
+}
+
+h1 {
+    color: #1f2937;
+}
+
+h2 {
+    border-left: 5px solid #3b82f6;
+    padding-left: 10px;
+    color: #1f2937;
+}
+
+pre {
+    background: #111;
+    color: #0f0;
+    padding: 10px;
+    overflow-x: auto;
+}
+
+</style>
 </head>
 
 <body>
 
-<!-- NAV -->
-<nav style="background:#f2f2f2; padding:15px; border-radius:10px; margin-bottom:20px;">
-    <a href="index.html" style="margin-right:15px;">Home</a>
-    <a href="topic.html" style="margin-right:15px;">Topic</a>
-    <a href="methodology.html" style="margin-right:15px;">Methodology</a>
-    <a href="queries.html" style="margin-right:15px;">Queries</a>
-    <a href="challenges.html">Challenges</a>
+<!-- NAVIGATION -->
+<nav>
+    <a href="#intro">Introduction</a>
+    <a href="#methodology">Methodology</a>
+    <a href="#queries">SPARQL Queries</a>
+    <a href="#gaps">Gaps</a>
+    <a href="#llm">LLM</a>
+    <a href="#rdf">RDF Enrichment</a>
+    <a href="#challenges">Challenges</a>
+    <a href="#conclusion">Conclusion</a>
 </nav>
 
+<!-- INTRODUCTION -->
+<section id="intro">
 <h1>Introduction</h1>
 
 <p>
-We started with a SPARQL query to identify Cultural Properties in ArCo related to The Calling of Saint Matthew.
-The goal was to verify whether the Knowledge Graph contains explicit references to Caravaggio’s artwork.
+We started with this query to identify Cultural Properties in ArCo related to the iconography of
+The Calling of Saint Matthew. The goal was to verify whether the Knowledge Graph contains explicit references
+to the artwork associated with Caravaggio, using FILTER and REGEX for keyword search such as
+“vocazione di San Matteo”, “san matteo”, and “caravaggio”.
 </p>
 
 <p>
-We used FILTER and REGEX to search for different variations such as “vocazione di San Matteo”, “san matteo”, and “caravaggio”.
+We used DISTINCT to remove duplicates caused by multilingual labels (Italian and English).
+The results showed heterogeneous cultural objects related to Saint Matthew, including paintings and sculptures.
 </p>
 
 <p>
-The results showed ambiguity because some entities refer to Caravaggio and others to similar names.
+Some results referred to Caravaggio, while others included similar names such as “da Caravaggio” or stylistic attributions.
+This introduced ambiguity in the dataset.
 </p>
+
+<p>
+After identifying candidate Cultural Properties, we refined the analysis by focusing on author attribution
+to distinguish Michelangelo Merisi da Caravaggio from other similar entries.
+</p>
+
+<p><b>Project by:</b> Elnara Tumarkhanova & Parvana Gurbanova</p>
+</section>
+
+<!-- METHODOLOGY -->
+<section id="methodology">
+<h2>Methodology</h2>
+
+<p>
+We explored the ArCo Knowledge Graph using SPARQL endpoint and ontology documentation.
+</p>
+
+<p>
+The methodology followed three steps: data extraction, gap identification, and semantic enrichment.
+</p>
+</section>
+
+<!-- QUERIES -->
+<section id="queries">
+<h2>SPARQL Queries & Results</h2>
+
+<p>Example query used for exploration:</p>
+
+<pre>
+SELECT DISTINCT ?p ?o
+WHERE {
+  ?x ?p ?o .
+  FILTER regex(str(?o), "caravaggio", "i")
+}
+</pre>
+
+<p>
+This query helped identify Cultural Properties related to Caravaggio.
+</p>
+</section>
+
+<!-- GAPS -->
+<section id="gaps">
+<h2>Gaps</h2>
+
+<p>
+We identified ambiguity in the dataset due to similar names (Caravaggio vs da Caravaggio).
+Lexical matching alone was not sufficient.
+</p>
+</section>
+
+<!-- LLM -->
+<section id="llm">
+<h2>LLM Usage</h2>
+
+<p>
+Large Language Models were used to interpret descriptions, extract subjects, and disambiguate entities.
+</p>
+</section>
+
+<!-- RDF -->
+<section id="rdf">
+<h2>RDF Enrichment</h2>
+
+<p>
+We enriched the knowledge graph by generating RDF triples.
+</p>
+
+<pre>
+@prefix arco: <https://w3id.org/arco/ontology/arco/> .
+@prefix a-cd: <https://w3id.org/arco/ontology/contextdescription/> .
+
+ex:Artwork a arco:CulturalProperty ;
+    a-cd:hasSubject ex:SaintMatthew .
+</pre>
+</section>
+
+<!-- CHALLENGES -->
+<section id="challenges">
+<h2>Challenges</h2>
+
+<p>
+Main challenges included ambiguity in entity names, multilingual labels, and noisy SPARQL results.
+</p>
+</section>
+
+<!-- CONCLUSION -->
+<section id="conclusion">
+<h2>Conclusion</h2>
+
+<p>
+The combination of SPARQL queries, LLM assistance, and RDF enrichment improved the quality of extracted knowledge
+and reduced ambiguity in the dataset.
+</p>
+</section>
 
 </body>
 </html>
