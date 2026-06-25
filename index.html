@@ -1,199 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
-<title>Caravaggio Project</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>KE4H Project | The Calling of Saint Matthew</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f5f5f5;
-    scroll-behavior: smooth;
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f4f4f4;
+    color:#222;
+    line-height:1.6;
 }
 
-/* NAVBAR */
-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: #1f2937;
-    padding: 12px;
-    text-align: center;
-    z-index: 1000;
+/* HEADER */
+header{
+    background:#111;
+    color:white;
+    padding:30px 20px;
+    text-align:center;
 }
 
-nav a {
-    color: white;
-    margin: 0 10px;
-    text-decoration: none;
-    font-size: 14px;
+header h1{
+    margin:0;
+    font-size:28px;
 }
 
-nav a:hover {
-    text-decoration: underline;
+header p{
+    margin-top:8px;
+    color:#ccc;
 }
 
-/* SECTIONS */
-section {
-    width: 80%;
-    margin: auto;
-    background: white;
-    padding: 30px;
-    margin-top: 80px;
-    border-radius: 10px;
+/* NAV */
+nav{
+    background:#222;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
 }
 
-h1 {
-    color: #1f2937;
+nav a{
+    color:white;
+    text-decoration:none;
+    padding:14px 18px;
+    display:inline-block;
 }
 
-h2 {
-    border-left: 5px solid #3b82f6;
-    padding-left: 10px;
-    color: #1f2937;
+nav a:hover{
+    background:#444;
 }
 
-pre {
-    background: #111;
-    color: #0f0;
-    padding: 10px;
-    overflow-x: auto;
+/* HERO */
+.hero{
+    background:white;
+    padding:40px 20px;
+    text-align:center;
 }
 
+.hero img{
+    width:100%;
+    max-width:900px;
+    border-radius:12px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.25);
+}
+
+.hero h2{
+    margin-top:20px;
+    font-size:26px;
+}
+
+/* CONTENT */
+.container{
+    max-width:1000px;
+    margin:auto;
+    background:white;
+    padding:40px;
+    margin-top:20px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+h2{
+    color:#111;
+    border-left:5px solid #111;
+    padding-left:10px;
+}
+
+ul{
+    padding-left:20px;
+}
+
+/* FOOTER */
+footer{
+    background:#111;
+    color:white;
+    text-align:center;
+    padding:20px;
+    margin-top:30px;
+}
 </style>
+
 </head>
 
 <body>
 
-<!-- NAVIGATION -->
+<header>
+<h1>KE4H Project</h1>
+<p>Knowledge Graph Enrichment using LLMs</p>
+</header>
+
 <nav>
-    <a href="#intro">Introduction</a>
-    <a href="#methodology">Methodology</a>
-    <a href="#queries">SPARQL Queries</a>
-    <a href="#gaps">Gaps</a>
-    <a href="#llm">LLM</a>
-    <a href="#rdf">RDF Enrichment</a>
-    <a href="#challenges">Challenges</a>
-    <a href="#conclusion">Conclusion</a>
+<a href="index.html">Home</a>
+<a href="topic.html">Topic</a>
+<a href="methodology.html">Methodology</a>
+<a href="sparql.html">SPARQL</a>
+<a href="llm.html">LLM Analysis</a>
+<a href="results.html">Results</a>
+<a href="challenges.html">Challenges</a>
 </nav>
 
+<!-- HERO SECTION -->
+<section class="hero">
+
+<img src="images/calling-of-saint-matthew.jpg" alt="The Calling of Saint Matthew - Caravaggio">
+
+<h2>The Calling of Saint Matthew</h2>
+
+<p>
+A masterpiece by Caravaggio representing one of the most iconic moments in Baroque religious art.
+</p>
+
+</section>
+
 <!-- INTRODUCTION -->
-<section id="intro">
-<h1>Introduction</h1>
+<div class="container">
+
+<h2>Project Introduction</h2>
 
 <p>
-We started with this query to identify Cultural Properties in ArCo related to the iconography of
-The Calling of Saint Matthew. The goal was to verify whether the Knowledge Graph contains explicit references
-to the artwork associated with Caravaggio, using FILTER and REGEX for keyword search such as
-“vocazione di San Matteo”, “san matteo”, and “caravaggio”.
+This project explores the integration of Knowledge Graphs (KGs) and Large Language Models (LLMs)
+for enriching cultural heritage data. The selected case study is
+<i>The Calling of Saint Matthew</i> by Michelangelo Merisi da Caravaggio, a landmark painting
+of the Baroque period.
 </p>
 
 <p>
-We used DISTINCT to remove duplicates caused by multilingual labels (Italian and English).
-The results showed heterogeneous cultural objects related to Saint Matthew, including paintings and sculptures.
+The main objective is to investigate how structured knowledge stored in the ArCo Knowledge Graph
+can be extended using semantic inference and generative capabilities of LLMs.
 </p>
 
 <p>
-Some results referred to Caravaggio, while others included similar names such as “da Caravaggio” or stylistic attributions.
-This introduced ambiguity in the dataset.
+We began by identifying Cultural Properties related to the artwork using SPARQL queries,
+and then progressively refined the dataset by eliminating ambiguity and improving entity precision.
+</p>
+
+<hr>
+
+<h2>SPARQL Exploration Summary</h2>
+
+<p>
+We started with a query designed to retrieve Cultural Properties related to the iconography of
+The Calling of Saint Matthew. To improve recall, we used <b>FILTER</b> and <b>REGEX</b>
+to match different textual variations such as “vocazione di San Matteo”, “San Matteo”, and “Caravaggio”.
 </p>
 
 <p>
-After identifying candidate Cultural Properties, we refined the analysis by focusing on author attribution
-to distinguish Michelangelo Merisi da Caravaggio from other similar entries.
-</p>
-
-<p><b>Project by:</b> Elnara Tumarkhanova & Parvana Gurbanova</p>
-</section>
-
-<!-- METHODOLOGY -->
-<section id="methodology">
-<h2>Methodology</h2>
-
-<p>
-We explored the ArCo Knowledge Graph using SPARQL endpoint and ontology documentation.
+We applied <b>DISTINCT</b> to remove duplicates caused by multilingual labels in ArCo (Italian and English).
+The results included paintings, sculptures, and decorative works associated with Saint Matthew.
 </p>
 
 <p>
-The methodology followed three steps: data extraction, gap identification, and semantic enrichment.
+However, we observed ambiguity in the dataset: some results referred to works by Michelangelo Merisi da Caravaggio,
+while others referenced artists whose names include “da Caravaggio” or stylistic expressions such as
+“maniera di Caravaggio”. This introduced noise and showed that lexical matching alone is insufficient.
 </p>
-</section>
-
-<!-- QUERIES -->
-<section id="queries">
-<h2>SPARQL Queries & Results</h2>
-
-<p>Example query used for exploration:</p>
-
-<pre>
-SELECT DISTINCT ?p ?o
-WHERE {
-  ?x ?p ?o .
-  FILTER regex(str(?o), "caravaggio", "i")
-}
-</pre>
 
 <p>
-This query helped identify Cultural Properties related to Caravaggio.
-</p>
-</section>
-
-<!-- GAPS -->
-<section id="gaps">
-<h2>Gaps</h2>
-
-<p>
-We identified ambiguity in the dataset due to similar names (Caravaggio vs da Caravaggio).
-Lexical matching alone was not sufficient.
-</p>
-</section>
-
-<!-- LLM -->
-<section id="llm">
-<h2>LLM Usage</h2>
-
-<p>
-Large Language Models were used to interpret descriptions, extract subjects, and disambiguate entities.
-</p>
-</section>
-
-<!-- RDF -->
-<section id="rdf">
-<h2>RDF Enrichment</h2>
-
-<p>
-We enriched the knowledge graph by generating RDF triples.
+To resolve this issue, we refined the query by focusing on author attribution,
+ensuring correct identification of Caravaggio-related works only.
 </p>
 
-<pre>
-@prefix arco: <https://w3id.org/arco/ontology/arco/> .
-@prefix a-cd: <https://w3id.org/arco/ontology/contextdescription/> .
+<hr>
 
-ex:Artwork a arco:CulturalProperty ;
-    a-cd:hasSubject ex:SaintMatthew .
-</pre>
-</section>
+<h2>Research Team</h2>
 
-<!-- CHALLENGES -->
-<section id="challenges">
-<h2>Challenges</h2>
+<ul>
+<li><b>Parvana Gurbanova</b></li>
+<li><b>Elnara Tumarkhanova</b></li>
+</ul>
 
-<p>
-Main challenges included ambiguity in entity names, multilingual labels, and noisy SPARQL results.
-</p>
-</section>
+</div>
 
-<!-- CONCLUSION -->
-<section id="conclusion">
-<h2>Conclusion</h2>
-
-<p>
-The combination of SPARQL queries, LLM assistance, and RDF enrichment improved the quality of extracted knowledge
-and reduced ambiguity in the dataset.
-</p>
-</section>
+<footer>
+<p>KE4H Project © 2026 | Knowledge Graph & LLM Integration</p>
+</footer>
 
 </body>
 </html>
