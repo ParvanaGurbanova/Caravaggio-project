@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>KE4H Project | Caravaggio</title>
+<title>Topic | The Calling of Saint Matthew</title>
 
 <style>
 body{
@@ -12,6 +12,7 @@ body{
     font-family:Segoe UI, sans-serif;
     background:#f6f4ef;
     color:#2b2b2b;
+    line-height:1.7;
 }
 
 /* HEADER */
@@ -19,17 +20,17 @@ header{
     background:#2b2118;
     color:white;
     text-align:center;
-    padding:35px 20px;
+    padding:30px 20px;
 }
 
 header h1{
     margin:0;
-    font-size:28px;
+    font-size:26px;
 }
 
 header p{
     color:#d6c7a6;
-    margin-top:8px;
+    margin-top:5px;
 }
 
 /* NAV */
@@ -45,61 +46,42 @@ nav a{
     padding:14px 18px;
     text-decoration:none;
     transition:0.3s;
+    font-size:15px;
 }
 
 nav a:hover{
     background:#b48a2c;
-    color:#000;
+    color:black;
 }
 
-/* HERO */
-.hero{
-    text-align:center;
-    padding:40px 20px;
-}
-
-.hero img{
-    width:100%;
-    max-width:850px;
-    border-radius:10px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.25);
-}
-
-.hero h2{
-    margin-top:20px;
-    font-size:26px;
-}
-
-/* CONTAINER */
+/* CONTENT */
 .container{
     max-width:1000px;
-    margin:30px auto;
-    padding:25px;
+    margin:40px auto;
+    padding:20px;
 }
 
-/* CARD */
 .card{
     background:white;
-    padding:20px;
+    padding:25px;
     margin-bottom:20px;
     border-radius:10px;
     box-shadow:0 5px 15px rgba(0,0,0,0.08);
     border-left:5px solid #b48a2c;
 }
 
-.card h2{
+h2{
     margin-top:0;
+    color:#2b2118;
 }
 
-/* TEAM */
-.team{
-    text-align:center;
+/* LIST */
+ul{
+    padding-left:20px;
 }
 
-.team img{
-    width:300px;
-    border-radius:10px;
-    box-shadow:0 10px 20px rgba(0,0,0,0.2);
+ul li{
+    margin-bottom:8px;
 }
 
 /* FOOTER */
@@ -108,7 +90,7 @@ footer{
     color:#ccc;
     text-align:center;
     padding:20px;
-    margin-top:30px;
+    margin-top:40px;
 }
 </style>
 
@@ -118,7 +100,7 @@ footer{
 
 <header>
 <h1>KE4H Project</h1>
-<p>Knowledge Graph & LLM - Caravaggio Case Study</p>
+<p>Topic Analysis - The Calling of Saint Matthew</p>
 </header>
 
 <nav>
@@ -131,37 +113,60 @@ footer{
 <a href="challenges.html">Challenges</a>
 </nav>
 
-<div class="hero">
-<img src="calling.jpg" alt="Caravaggio">
-<h2>The Calling of Saint Matthew</h2>
-<p>Knowledge Graph enrichment using SPARQL and Large Language Models</p>
-</div>
-
 <div class="container">
 
 <div class="card">
-<h2>Project Introduction</h2>
+<h2>Topic Overview</h2>
 <p>
-This project explores how Knowledge Graphs and Large Language Models can be used together to enrich cultural heritage data.
-We focus on Caravaggio’s painting “The Calling of Saint Matthew”.
+This project focuses on the analysis and semantic enrichment of the artwork
+<i>The Calling of Saint Matthew</i> by Michelangelo Merisi da Caravaggio (1599–1600).
+The painting is one of the most important works of Baroque art and is located in the
+Contarelli Chapel of San Luigi dei Francesi in Rome.
+</p>
+
+<p>
+The artwork depicts the biblical moment when Jesus calls Matthew, a tax collector,
+to become one of his apostles. The dramatic use of light and shadow (chiaroscuro)
+is a defining feature of Caravaggio’s artistic style.
 </p>
 </div>
 
 <div class="card">
-<h2>Goal</h2>
+<h2>Artistic Importance</h2>
 <p>
-The goal is to extract knowledge from ArCo KG using SPARQL queries and improve missing semantic information using LLMs.
+The Calling of Saint Matthew represents a turning point in Baroque art.
+Caravaggio rejected idealized religious imagery and instead used realistic human figures
+and everyday settings to convey spiritual meaning.
+</p>
+
+<p>
+The strong contrast between light and darkness emphasizes the moment of divine intervention,
+making the scene emotionally powerful and visually dramatic.
 </p>
 </div>
 
 <div class="card">
-<h2>Research Team</h2>
+<h2>Why This Artwork?</h2>
+<p>
+This artwork was selected because it is represented in the ArCo Knowledge Graph,
+but some semantic information is incomplete or ambiguous.
+</p>
 
-<div class="team">
-<img src="team.jpg" alt="Team">
-<p><b>Parvana Gurbanova & Elnara Tumarkhanova</b></p>
+<p>
+This makes it an ideal case study for exploring how Knowledge Graphs can be enriched
+using Large Language Models and SPARQL-based extraction methods.
+</p>
 </div>
 
+<div class="card">
+<h2>Research Focus</h2>
+<ul>
+<li>Analyze representation of the artwork in ArCo Knowledge Graph</li>
+<li>Identify missing or incomplete semantic information</li>
+<li>Use SPARQL queries for data extraction</li>
+<li>Generate RDF triples using Large Language Models</li>
+<li>Compare and evaluate LLM outputs</li>
+</ul>
 </div>
 
 </div>
