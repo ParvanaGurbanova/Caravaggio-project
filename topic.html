@@ -9,44 +9,48 @@
 <style>
 body{
     margin:0;
-    font-family:Segoe UI, sans-serif;
-    background:#f6f4ef;
+    font-family:'Segoe UI', sans-serif;
+    background:linear-gradient(180deg,#f7f3ea,#ffffff);
     color:#2b2b2b;
     line-height:1.7;
 }
 
-/* HEADER */
+/* TOP BAR */
 header{
-    background:#2b2118;
+    background:#1f1a16;
     color:white;
     text-align:center;
-    padding:30px 20px;
+    padding:35px 20px;
+    border-bottom:3px solid #b48a2c;
 }
 
 header h1{
     margin:0;
-    font-size:26px;
+    font-size:28px;
+    letter-spacing:1px;
 }
 
 header p{
     color:#d6c7a6;
-    margin-top:5px;
+    margin-top:8px;
 }
 
 /* NAV */
 nav{
-    background:#1f1a16;
+    background:#2b2118;
     display:flex;
     justify-content:center;
     flex-wrap:wrap;
+    position:sticky;
+    top:0;
 }
 
 nav a{
     color:white;
-    padding:14px 18px;
     text-decoration:none;
+    padding:14px 18px;
     transition:0.3s;
-    font-size:15px;
+    font-size:14px;
 }
 
 nav a:hover{
@@ -54,25 +58,39 @@ nav a:hover{
     color:black;
 }
 
-/* CONTENT */
+/* CONTAINER */
 .container{
     max-width:1000px;
     margin:40px auto;
     padding:20px;
 }
 
+/* CARDS */
 .card{
     background:white;
     padding:25px;
     margin-bottom:20px;
-    border-radius:10px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+    border-radius:12px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
     border-left:5px solid #b48a2c;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-3px);
 }
 
 h2{
     margin-top:0;
-    color:#2b2118;
+    color:#1f1a16;
+}
+
+/* HIGHLIGHT BOX */
+.highlight{
+    background:#f5efe2;
+    padding:15px;
+    border-left:4px solid #b48a2c;
+    margin-top:10px;
 }
 
 /* LIST */
@@ -86,7 +104,7 @@ ul li{
 
 /* FOOTER */
 footer{
-    background:#2b2118;
+    background:#1f1a16;
     color:#ccc;
     text-align:center;
     padding:20px;
@@ -100,7 +118,7 @@ footer{
 
 <header>
 <h1>KE4H Project</h1>
-<p>Topic Analysis - The Calling of Saint Matthew</p>
+<p>Topic Analysis - Caravaggio Case Study</p>
 </header>
 
 <nav>
@@ -108,7 +126,7 @@ footer{
 <a href="topic.html">Topic</a>
 <a href="methodology.html">Methodology</a>
 <a href="sparql.html">SPARQL</a>
-<a href="llm.html">LLM</a>
+<a href="llm.html">LLM Analysis</a>
 <a href="results.html">Results</a>
 <a href="challenges.html">Challenges</a>
 </nav>
@@ -117,56 +135,61 @@ footer{
 
 <div class="card">
 <h2>Topic Overview</h2>
-<p>
-This project focuses on the analysis and semantic enrichment of the artwork
-<i>The Calling of Saint Matthew</i> by Michelangelo Merisi da Caravaggio (1599–1600).
-The painting is one of the most important works of Baroque art and is located in the
-Contarelli Chapel of San Luigi dei Francesi in Rome.
-</p>
 
 <p>
-The artwork depicts the biblical moment when Jesus calls Matthew, a tax collector,
-to become one of his apostles. The dramatic use of light and shadow (chiaroscuro)
-is a defining feature of Caravaggio’s artistic style.
+This project focuses on the semantic analysis and enrichment of
+<i>The Calling of Saint Matthew</i> (1599–1600) by Michelangelo Merisi da Caravaggio.
+The painting is one of the most important masterpieces of the Baroque period and is
+located in the Contarelli Chapel in Rome.
 </p>
+
+<div class="highlight">
+The artwork represents the moment when Jesus Christ calls Matthew to become one of his apostles.
+</div>
+
 </div>
 
 <div class="card">
-<h2>Artistic Importance</h2>
+<h2>Artistic Significance</h2>
+
 <p>
-The Calling of Saint Matthew represents a turning point in Baroque art.
-Caravaggio rejected idealized religious imagery and instead used realistic human figures
-and everyday settings to convey spiritual meaning.
+Caravaggio revolutionized religious painting by introducing realism, dramatic lighting,
+and everyday human expressions into sacred scenes.
 </p>
 
 <p>
-The strong contrast between light and darkness emphasizes the moment of divine intervention,
-making the scene emotionally powerful and visually dramatic.
+The strong use of chiaroscuro (light vs darkness) emphasizes divine intervention and
+guides the viewer’s attention directly to the key moment in the narrative.
 </p>
+
 </div>
 
 <div class="card">
-<h2>Why This Artwork?</h2>
+<h2>Reason for Selection</h2>
+
 <p>
-This artwork was selected because it is represented in the ArCo Knowledge Graph,
-but some semantic information is incomplete or ambiguous.
+We selected this artwork because it is partially represented in the ArCo Knowledge Graph,
+but its semantic description is incomplete or ambiguous.
 </p>
 
 <p>
-This makes it an ideal case study for exploring how Knowledge Graphs can be enriched
-using Large Language Models and SPARQL-based extraction methods.
+This makes it an ideal case study for exploring Knowledge Graph enrichment using
+Large Language Models and SPARQL-based extraction.
 </p>
+
 </div>
 
 <div class="card">
 <h2>Research Focus</h2>
+
 <ul>
-<li>Analyze representation of the artwork in ArCo Knowledge Graph</li>
-<li>Identify missing or incomplete semantic information</li>
-<li>Use SPARQL queries for data extraction</li>
+<li>Analyze ArCo Knowledge Graph representation of the artwork</li>
+<li>Identify missing or ambiguous semantic relations</li>
+<li>Use SPARQL queries for structured extraction</li>
 <li>Generate RDF triples using Large Language Models</li>
-<li>Compare and evaluate LLM outputs</li>
+<li>Compare outputs from different LLMs</li>
 </ul>
+
 </div>
 
 </div>
