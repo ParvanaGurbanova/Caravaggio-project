@@ -104,7 +104,7 @@ footer{
 .query-img{
     display:block;
     width:100%;
-    max-width:650px;
+    max-width:500px;
     margin:20px auto;
     border-radius:10px;
     box-shadow:0 8px 20px rgba(0,0,0,0.15);
@@ -151,16 +151,14 @@ We specifically searched for the predicate <code>a-cd:hasCommittent</code>.
 
 </div>
 
-<h3>SPARQL Query (ASK)</h3>
-
 <pre>
 PREFIX a-cd: <https://w3id.org/arco/ontology/context-description/>
 PREFIX arco: <https://w3id.org/arco/ontology/arco/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 ASK WHERE {
-<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200705423>
-a-cd:hasCommittent ?committent .
+  &lt;https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200705423&gt;
+  a-cd:hasCommittent ?committent .
 }
 </pre>
 
