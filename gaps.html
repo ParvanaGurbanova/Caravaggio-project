@@ -119,55 +119,93 @@ table th{
 
 <p>
 Chain-of-Thought (Few-shot Prompting Technique)
+</p>
+
+<p>
 In this experiment, we applied a few-shot chain-of-thought prompting strategy to evaluate how large language models handle complex historical commission chains.
 A structured example (Eiffel Tower commissioning process) was provided to the models in order to guide their reasoning format. The goal was to test whether models could correctly transfer a clear “designer → commissioner → final attribution” reasoning pattern to a more complex art-historical case.
 </p>
 
-<h3>Promt:</h3>
+<p><b>Promt:</b></p>
 
-<pre>
+<p>
 Q1: Who designed the Eiffel Tower?
+</p>
 
-A1:
+<p><b>A1:</b></p>
 
+<p>
 Step 1: The Eiffel Tower is a landmark in Paris, France and was built for the 1889 World’s Fair.
+</p>
 
+<p>
 Step 2: It was constructed as the entrance arch to the exposition celebrating the 100th anniversary of the French Revolution.
+</p>
 
+<p>
 Step 3: The engineer responsible for its design and construction was Gustave Eiffel’s company, led by Gustave Eiffel.
+</p>
 
+<p>
 Step 4: Historical records confirm that Gustave Eiffel was the principal designer of the Eiffel Tower.
+</p>
 
+<p>
 Final Answer: Gustave Eiffel.
-</pre>
+</p>
+<img src="images/llm2.jpg" class="query-img" alt="ChatGPT output">
+
+<br>
 
 <p>
 Who is the original commissioner of Caravaggio’s The Calling of Saint Matthew? Let’s think step by step.
 </p>
 
-<h3>Chat:</h3>
+<br>
 
-<pre>
+<p><b>Chat:</b></p>
+
+<p>
 We don’t have to reconstruct this in steps—the commissioning history is pretty well documented.
-The Calling of Saint Matthew was commissioned as part of the decoration of the Contarelli Chapel in San Luigi dei Francesi in Rome. The original patron who left the funds and established the commission was the French cardinal Mathieu Cointrel (Italian: Matteo Contarelli).
+The Calling of Saint Matthew was commissioned as part of the decoration of the Contarelli Chapel in San Luigi dei Francesi in Rome.
+The original patron who left the funds and established the commission was the French cardinal Mathieu Cointrel (Italian: Matteo Contarelli).
 After Contarelli’s death, the execution of the project was handled through his estate and church administrators, but the commission itself traces back to him.
+</p>
+
+<p>
 Final Answer: Cardinal Mathieu Cointrel (Matteo Contarelli).
-</pre>
+</p>
+<img src="images/llm1.jpg" class="query-img" alt="Gemini output">
 
-<h3>Gemini:</h3>
+<br>
 
-<pre>
+<p><b>Gemini:</b></p>
+
+<p>
 Step 1: The Calling of Saint Matthew is a masterpiece located in the Contarelli Chapel within the church of San Luigi dei Francesi in Rome, Italy.
+</p>
+
+<p>
 Step 2: The chapel itself was acquired by the French Cardinal Matthieu Cointerel (known in Italian as Matteo Contarelli).
+</p>
+
+<p>
 Step 3: Before his death in 1585, Cardinal Contarelli left a substantial endowment along with strict instructions in his will detailing how the chapel should be decorated with scenes honoring his namesake, Saint Matthew.
+</p>
+
+<p>
 Step 4: Although Caravaggio was awarded the contract years later in 1599 through the intervention of his patron, Cardinal Francesco Maria del Monte, historical records establish that the initial funding and mandate came directly from the late cardinal's estate.
+</p>
+
+<p>
 Final Answer: Cardinal Matthieu Cointerel (Matteo Contarelli).
-Caravaggio's First Public Commission explores the history and visual power of Caravaggio's work in the Contarelli Chapel, including The Calling of Saint Matthew.
-</pre>
+</p>
 
-<h2>LLM Output Summary</h2>
+<br>
 
-<table>
+<h3>LLM Output Summary</h3>
+
+<table border="1" cellpadding="10" cellspacing="0">
 <tr>
 <th>Model</th>
 <th>Strengths</th>
@@ -187,23 +225,24 @@ Highly direct, minimal narrative noise, clear final resolution, includes key his
 <tr>
 <td><b>Gemini</b></td>
 <td>
-Structured in “steps,” progressively building from location → patron → will → later execution. Includes historical detail and ends with the same final identification. Adds a YouTube link.
+Structured in “steps,” progressively building from location → patron → will → later execution. Includes historical detail and ends with the same final identification.
 </td>
 <td>
-Strong chronological clarity, good contextual layering, more pedagogical explanation, richer historical framing. Slightly redundant (step format restates known info), includes extraneous content (video link), less concise.
+Strong chronological clarity, good contextual layering, more pedagogical explanation, richer historical framing. Slightly redundant and includes extra content.
 </td>
 </tr>
+
 </table>
 
-<h2>Key comparison insight</h2>
+<br>
 
 <p>
-ChatGPT style → compressed encyclopedic answer: prioritizes directness and final resolution, with selective context.<br>
+Key comparison insight:
+ChatGPT style → compressed encyclopedic answer: prioritizes directness and final resolution, with selective context.
 Gemini style → explanatory scaffolding: prioritizes didactic progression, even when the conclusion is already known.
 </p>
 
 </div>
-
 <footer>
 SPARQL Analysis | KE4H Project © 2026
 </footer>
