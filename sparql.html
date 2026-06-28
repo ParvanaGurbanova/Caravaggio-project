@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <title>SPARQL Queries | Saint Matthew Project</title>
-
 <style>
 body{
     margin:0;
@@ -80,11 +79,38 @@ footer{
     color:#ccc;
     border-top:3px solid #c9a227;
 }
+
+.expl{
+    background:#f8f8f8;
+    border-left:4px solid #c9a227;
+    padding:15px 20px;
+    margin:20px 0;
+    border-radius:8px;
+}
+
+.expl h3{
+    margin-top:0;
+    color:#1b1b1b;
+}
+
+.expl code{
+    background:#ececec;
+    padding:2px 5px;
+    border-radius:4px;
+    font-family:Consolas, monospace;
+}
+
+/* ✅ Query şəkilləri */
+.query-img{
+    display:block;
+    width:100%;
+    max-width:700px;
+    margin:20px auto;
+    border-radius:10px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+}
 </style>
-</head>
-
-<body>
-
+    
 <header>
 <h1>The Calling of Saint Matthew</h1>
 <p>Michelangelo Merisi da Caravaggio (1599–1600)</p>
@@ -137,6 +163,22 @@ WHERE {
 
 <img src="images/query1.jpg" class="query-img">
 
+<h3>Results</h3>
+
+<p>
+The research generated a broad and heterogeneous archive, comprising several examples of paintings of Saint Matthew, in sculpture or decorative forms. In addition, the study also identified paintings created by different authors such as Antonio Cifrondi, Rutilio Manetti or the Maestro di Roccaverano, together with other art pieces relating to Saint Matthew but unrelated to the artist from Caravaggio.
+</p>
+
+<p>
+From an interpretative perspective, the data set at this stage is thematically relevant but artistically unfiltered. It covers a variety of centuries, styles, and artistic contexts, without distinguishing between Caravaggio's works and those of other artists depicting the same subject.
+</p>
+
+<p>
+This highlights an important limitation: thematic filtering alone is not sufficient to identify works by a specific author, as additional constraints on authorship or attribution are required to refine the results.
+</p>
+
+<hr>
+
 <!-- QUERY 2 -->
 <h2>Query 2 — Author-level filtering (initial attempt)</h2>
 
@@ -183,6 +225,22 @@ WHERE {
 
 <img src="images/query2.jpg" class="query-img">
 
+<h3>Results</h3>
+
+<p>
+This clearly revealed a huge issue with name-ambiguity when the query "Caravaggio" returned many results containing "Caravaggio," such as Stella Fermo detto Fermo da Caravaggio, Polidoro da Caravaggio and many more historical agents of similar names.
+</p>
+
+<p>
+From a historical-interpretation perspective, this demonstrates a fundamental problem: since "Caravaggio" itself applies to more historical agents than just Michelangelo Merisi da Caravaggio, it becomes the target of more than just one person in the dataset.
+</p>
+
+<p>
+This suggests that simple string matching is not sufficient to ensure the correct identification of authors, as it cannot distinguish between individuals with similar names.
+</p>
+
+<hr>
+
 <!-- QUERY 3 -->
 <h2>Query 3 — Identity-based filtering (final resolution)</h2>
 
@@ -203,6 +261,20 @@ WHERE {
 </pre>
 
 <img src="images/query3.jpg" class="query-img">
+
+<h3>Results</h3>
+
+<p>
+The final query successfully isolated the canonical works by Caravaggio related to Saint Matthew, namely <i>Vocazione di S. Matteo</i>, <i>Martirio di S. Matteo</i>, and <i>San Matteo e l’angelo</i>.
+</p>
+
+<p>
+From an interpretative perspective, this stage shows that the dataset has been properly refined. Only Michelangelo Merisi da Caravaggio is now included, all previously identified false positives have been removed, and the ambiguity in the results has been resolved.
+</p>
+
+<p>
+As a result, the dataset is fully disambiguated, and the Saint Matthew cycle is correctly reconstructed, reflecting a coherent and accurate representation of Caravaggio’s works within the knowledge graph.
+</p>
 
 </div>
 
