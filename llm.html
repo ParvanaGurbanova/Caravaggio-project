@@ -149,9 +149,9 @@ table th{
 
 <h2>LLM Analysis</h2>
 
-<p>
+<p><b>
 Chain-of-Thought (Few-shot Prompting Technique)
-</p>
+</b></p>
 
 <p>
 In this experiment, we applied a few-shot chain-of-thought prompting strategy to evaluate how large language models handle complex historical commission chains.
@@ -195,7 +195,7 @@ Who is the original commissioner of Caravaggio’s The Calling of Saint Matthew?
 
 <br>
 
-<p><b>Chat:</b></p>
+<p><b>ChatGPT:</b></p>
 
 <p>
 We don’t have to reconstruct this in steps—the commissioning history is pretty well documented.
@@ -204,9 +204,9 @@ The original patron who left the funds and established the commission was the Fr
 After Contarelli’s death, the execution of the project was handled through his estate and church administrators, but the commission itself traces back to him.
 </p>
 
-<p>
+<p><b>
 Final Answer: Cardinal Mathieu Cointrel (Matteo Contarelli).
-</p>
+</b></p>
 <img src="images/llm1.jpg" class="query-img" alt="Gemini output">
 
 <br>
@@ -229,9 +229,9 @@ Step 3: Before his death in 1585, Cardinal Contarelli left a substantial endowme
 Step 4: Although Caravaggio was awarded the contract years later in 1599 through the intervention of his patron, Cardinal Francesco Maria del Monte, historical records establish that the initial funding and mandate came directly from the late cardinal's estate.
 </p>
 
-<p>
+<p><b>
 Final Answer: Cardinal Matthieu Cointerel (Matteo Contarelli).
-</p>
+</b></p>
 
 <br>
 
@@ -275,11 +275,11 @@ Slightly redundant (step format restates known info), includes extraneous conten
 </table>
 <br>
 
-<p>
+<p><b>
 Key comparison insight:
 ChatGPT style → compressed encyclopedic answer: prioritizes directness and final resolution, with selective context.
 Gemini style → explanatory scaffolding: prioritizes didactic progression, even when the conclusion is already known.
-</p>
+</b></p>
 <hr>
 
 <h3>Experiment 2 — Alternative English Title Verification</h3>
@@ -292,7 +292,7 @@ Does The Calling of Saint Matthew by Caravaggio have any alternative English tit
 
 <br>
 
-<p><b>Chat:</b></p>
+<p><b>ChatGPT:</b></p>
 
 <p>
 Yes. The Calling of Saint Matthew is most commonly known in English as “The Calling of Saint Matthew”, but you’ll also see a few close variants:
@@ -326,7 +326,6 @@ The Calling of Levi – A title variant rooted in biblical context. In the Gospe
 <table border="1" cellpadding="10" cellspacing="0">
 
 <tr>
-<th>LLM</th>
 <th>Model</th>
 <th>Output Summary</th>
 <th>Strengths</th>
@@ -334,7 +333,6 @@ The Calling of Levi – A title variant rooted in biblical context. In the Gospe
 </tr>
 
 <tr>
-<td>LLM</td>
 <td class="model-name">ChatGPT</td>
 <td>
 Lists minor English variants (“The Call of Saint Matthew,” “The Calling of St Matthew”), adds original Italian title (La vocazione di San Matteo), and clarifies that variations are mostly stylistic rather than meaningfully different titles.
@@ -348,7 +346,6 @@ Limited historical/theological depth (e.g., biblical naming context not explored
 </tr>
 
 <tr>
-<td>LLM</td>
 <td class="model-name">Gemini</td>
 <td>
 Provides English variants plus an additional title (“The Calling of Levi”) grounded in biblical tradition. Explains theological basis for the alternative naming and connects to Gospel sources.
@@ -365,10 +362,10 @@ Slightly broader than the question requires, more explanatory than necessary for
 
 <br>
 
-<p>
+<p><b>
 Key comparison insight:
 ChatGPT focuses on lexical and usage-based variation, while Gemini extends into interpretive and biblical reasoning for naming differences.
-</p>
+</b></p>
 </div>
 <footer>
 SPARQL Analysis | KE4H Project © 2026
