@@ -109,20 +109,18 @@ footer{
 We began with a broad survey to obtain all Cultural Properties related to Saint Matthew, without limiting the author. The goal was to understand how the subject is represented in ArCo and which works are related to it.
 </p>
 
-<p>
-We used:<br>
-FILTER(REGEX(...)) to capture variations of the subject:<br>
-“San Matteo”<br>
-“vocazione”<br>
-“simbolo di San Matteo”<br><br>
+<div class="expl">
 
-DISTINCT to eliminate duplicates caused by bilingual labels<br><br>
+<h3>Explanation of keywords used:</h3>
 
-?cp stands for Cultural Property.<br>
-?label represents the title or name of the cultural property
-</p>
+<ul>
+  <li><b><code>FILTER(REGEX)</code></b>: used to capture variations of the subject such as “San Matteo”, “vocazione”, and “simbolo di San Matteo”.</li>
+  <li><b><code>DISTINCT</code></b>: eliminates duplicate results caused by bilingual labels.</li>
+  <li><b><code>?cp</code></b>: stands for Cultural Property.</li>
+  <li><b><code>?label</code></b>: represents the title or name of the cultural property.</li>
+</ul>
 
-<h3>SPARQL Query</h3>
+</div>
 
 <pre>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -137,35 +135,27 @@ WHERE {
 }
 </pre>
 
-<h3>Results:</h3>
-
-<p>
-The research generated a broad and heterogeneous archive, comprising several examples of paintings of Saint Matthew, in sculpture or decorative forms. In addition, the study also identified paintings created by different authors such as Antonio Cifrondi, Rutilio Manetti or the Maestro di Roccaverano, together with other art pieces relating to Saint Matthew but unrelated to the artist from Caravaggio.
-</p>
-
-<p>
-From an interpretative perspective, the data set at this stage is thematically relevant but artistically unfiltered. It covers a variety of centuries, styles, and artistic contexts, without distinguishing between Caravaggio's works and those of other artists depicting the same subject.
-</p>
-
-<p>
-This highlights an important limitation: thematic filtering alone is not sufficient to identify works by a specific author, as additional constraints on authorship or attribution are required to refine the results.
-</p>
+<img src="images/query1.jpg" class="query-img">
 
 <!-- QUERY 2 -->
 <h2>Query 2 — Author-level filtering (initial attempt)</h2>
 
 <p>
-We have improved the query to include author information in order to separate works by Michelangelo Merisi da Caravaggio.
+We improved the query to include author information in order to separate works by Michelangelo Merisi da Caravaggio.
 </p>
 
-<p>
-We used:<br>
-a-cd:hasAuthor to link works to agents<br>
-REGEX on authorLabel to detect: “merisi”, “caravaggio”<br>
-REGEX on labels to restrict to: “vocazione”, “san matteo”
-</p>
+<div class="expl">
 
-<h3>SPARQL Query</h3>
+<h3>Explanation of keywords used:</h3>
+
+<ul>
+  <li><b><code>a-cd:hasAuthor</code></b>: links cultural properties to their authors.</li>
+  <li><b><code>REGEX</code></b>: used to detect patterns inside text values such as “merisi” and “caravaggio”.</li>
+  <li><b><code>FILTER</code></b>: restricts results based on conditions applied to labels and author names.</li>
+  <li><b><code>?authorLabel</code></b>: represents the name of the author in the dataset.</li>
+</ul>
+
+</div>
 
 <pre>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -191,28 +181,14 @@ WHERE {
 }
 </pre>
 
-<h3>Result:</h3>
-
-<p>
-This clearly revealed a huge issue with name-ambiguity when the query "Caravaggio" returned many results containing "Caravaggio," such as Stella Fermo detto Fermo da Caravaggio, Polidoro da Caravaggio and many more historical agents of similar names.
-</p>
-
-<p>
-From a historical-interpretation perspective, this demonstrates a fundamental problem: since "Caravaggio" itself applies to more historical agents than just Michelangelo Merisi da Caravaggio, it becomes the target of more than just one person in the dataset.
-</p>
-
-<p>
-This suggests that simple string matching is not sufficient to ensure the correct identification of authors, as it cannot distinguish between individuals with similar names.
-</p>
+<img src="images/query2.jpg" class="query-img">
 
 <!-- QUERY 3 -->
 <h2>Query 3 — Identity-based filtering (final resolution)</h2>
 
 <p>
-To solve the ambiguity, we replaced text-based filtering with exact IRI matching, directly referencing Michelangelo Merisi da Caravaggio in ArCo.
+To solve ambiguity, we replaced text-based filtering with exact IRI matching for Michelangelo Merisi da Caravaggio.
 </p>
-
-<h3>SPARQL Query (final)</h3>
 
 <pre>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -226,24 +202,12 @@ WHERE {
 }
 </pre>
 
-<h3>Result:</h3>
-
-<p>
-The final query successfully isolated the canonical works by Caravaggio related to Saint Matthew, namely Vocazione di S. Matteo, Martirio di S. Matteo, and San Matteo e l’angelo.
-</p>
-
-<p>
-From an interpretative perspective, this stage shows that the dataset has been properly refined. Only Michelangelo Merisi da Caravaggio is now included, all previously identified false positives have been removed, and the ambiguity in the results has been resolved.
-</p>
-
-<p>
-As a result, the dataset is fully disambiguated, and the Saint Matthew cycle is correctly reconstructed, reflecting a coherent and accurate representation of Caravaggio’s works within the knowledge graph.
-</p>
+<img src="images/query3.jpg" class="query-img">
 
 </div>
 
 <footer>
-SPARQL Page | KE4H Project © 2026
+SPARQL Analysis | KE4H Project © 2026
 </footer>
 
 </body>
