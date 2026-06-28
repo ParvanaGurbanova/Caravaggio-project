@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>LLM Analysis | Saint Matthew Project</title>
+<title>Identifying Gaps | Saint Matthew Project</title>
 
 <style>
 body{
@@ -66,7 +66,10 @@ pre{
     overflow-x:auto;
     border-radius:10px;
     font-size:13px;
-    white-space:pre-wrap;
+}
+
+h2{
+    margin-top:30px;
 }
 
 footer{
@@ -78,20 +81,24 @@ footer{
     border-top:3px solid #c9a227;
 }
 
-table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:20px;
+.expl{
+    background:#f8f8f8;
+    border-left:4px solid #c9a227;
+    padding:15px 20px;
+    margin:20px 0;
+    border-radius:8px;
 }
 
-table th, table td{
-    border:1px solid #ddd;
-    padding:12px;
-    vertical-align:top;
+.expl h3{
+    margin-top:0;
+    color:#1b1b1b;
 }
 
-table th{
-    background:#f2f2f2;
+.expl code{
+    background:#ececec;
+    padding:2px 5px;
+    border-radius:4px;
+    font-family:Consolas, monospace;
 }
 
 .query-img{
@@ -102,33 +109,7 @@ table th{
     border-radius:10px;
     box-shadow:0 8px 20px rgba(0,0,0,0.15);
 }
-
-.llm-table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:20px;
-    font-size:14px;
-}
-
-.llm-table th, .llm-table td{
-    border:1px solid #ddd;
-    padding:14px;
-    vertical-align:top;
-}
-
-.llm-table th{
-    background:#1b1b1b;
-    color:white;
-}
-
-.model-name{
-    font-weight:bold;
-    color:#c9a227;
-} 
 </style>
-</head>
-
-<body>
 
 <header>
 <h1>The Calling of Saint Matthew</h1>
@@ -147,206 +128,107 @@ table th{
 
 <div class="container">
 
-<h2>LLM Analysis</h2>
+<h2>1. Identification of the First Gap</h2>
 
 <p>
-Chain-of-Thought (Few-shot Prompting Technique)
+After the analysis performed in Query 4, we investigated whether the cultural property
+“Vocazione di S. Matteo” (Caravaggio) includes any semantic information related to its commissioning.
+In cultural heritage datasets, commissioning information is important because it identifies the entity responsible for funding or ordering the artwork.
 </p>
 
 <p>
-In this experiment, we applied a few-shot chain-of-thought prompting strategy to evaluate how large language models handle complex historical commission chains.
-A structured example (Eiffel Tower commissioning process) was provided to the models in order to guide their reasoning format. The goal was to test whether models could correctly transfer a clear “designer → commissioner → final attribution” reasoning pattern to a more complex art-historical case.
+The aim of this step was to verify whether such a relation is explicitly represented in the ArCo knowledge graph.
 </p>
 
-<p><b>Promt:</b></p>
+<div class="expl">
+
+<h3>Methodology</h3>
 
 <p>
-Q1: Who designed the Eiffel Tower?
+To test the presence of commissioning data, we used an ASK SPARQL query, which checks whether a triple exists without returning results.
+We specifically searched for the predicate <code>a-cd:hasCommittent</code>.
 </p>
 
-<p><b>A1:</b></p>
+</div>
+
+<h3>SPARQL Query (ASK)</h3>
+
+<pre>
+PREFIX a-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt;
+PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+
+ASK WHERE {
+  &lt;https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200705423&gt;
+  a-cd:hasCommittent ?committent .
+}
+</pre>
+
+
+<img src="images/gap1.jpg" class="query-img">
+
+<h3>Result</h3>
 
 <p>
-Step 1: The Eiffel Tower is a landmark in Paris, France and was built for the 1889 World’s Fair.
-</p>
-
-<p>
-Step 2: It was constructed as the entrance arch to the exposition celebrating the 100th anniversary of the French Revolution.
-</p>
-
-<p>
-Step 3: The engineer responsible for its design and construction was Gustave Eiffel’s company, led by Gustave Eiffel.
-</p>
-
-<p>
-Step 4: Historical records confirm that Gustave Eiffel was the principal designer of the Eiffel Tower.
-</p>
-
-<p>
-Final Answer: Gustave Eiffel.
-</p>
-<img src="images/llm2.jpg" class="query-img" alt="ChatGPT output">
-
-<br>
-
-<p>
-Who is the original commissioner of Caravaggio’s The Calling of Saint Matthew? Let’s think step by step.
-</p>
-
-<br>
-
-<p><b>Chat:</b></p>
-
-<p>
-We don’t have to reconstruct this in steps—the commissioning history is pretty well documented.
-The Calling of Saint Matthew was commissioned as part of the decoration of the Contarelli Chapel in San Luigi dei Francesi in Rome.
-The original patron who left the funds and established the commission was the French cardinal Mathieu Cointrel (Italian: Matteo Contarelli).
-After Contarelli’s death, the execution of the project was handled through his estate and church administrators, but the commission itself traces back to him.
+The query returned <b>false</b>.
 </p>
 
 <p>
-Final Answer: Cardinal Mathieu Cointrel (Matteo Contarelli).
-</p>
-<img src="images/llm1.jpg" class="query-img" alt="Gemini output">
-
-<br>
-
-<p><b>Gemini:</b></p>
-
-<p>
-Step 1: The Calling of Saint Matthew is a masterpiece located in the Contarelli Chapel within the church of San Luigi dei Francesi in Rome, Italy.
+This confirms the absence of commissioning-related relations in the dataset, indicating that the commissioning context is not explicitly modeled for this cultural property.
 </p>
 
-<p>
-Step 2: The chapel itself was acquired by the French Cardinal Matthieu Cointerel (known in Italian as Matteo Contarelli).
-</p>
-
-<p>
-Step 3: Before his death in 1585, Cardinal Contarelli left a substantial endowment along with strict instructions in his will detailing how the chapel should be decorated with scenes honoring his namesake, Saint Matthew.
-</p>
-
-<p>
-Step 4: Although Caravaggio was awarded the contract years later in 1599 through the intervention of his patron, Cardinal Francesco Maria del Monte, historical records establish that the initial funding and mandate came directly from the late cardinal's estate.
-</p>
-
-<p>
-Final Answer: Cardinal Matthieu Cointerel (Matteo Contarelli).
-</p>
-
-<br>
-
-<h3>LLM Output Summary</h3>
-
-<table border="1" cellpadding="10" cellspacing="0">
-
-<tr>
-<th>Model</th>
-<th>Strengths</th>
-<th>Limitations</th>
-</tr>
-
-<tr>
-<td class="model-name">ChatGPT</td>
-<td>
-Directly identifies Cardinal Mathieu Cointrel (Matteo Contarelli) as the commissioner, briefly mentions the Contarelli Chapel, and adds a clarification about posthumous execution of the project. Ends with a concise final answer.
-</td>
-<td>
-Highly direct, minimal narrative noise, clear final resolution, includes key historical nuance (estate execution vs original commission).
-</td>
-</tr>
-
-<tr>
-<td class="model-name">Gemini</td>
-<td>
-Structured in “steps,” progressively building from location → patron → will → later execution. Includes historical detail and ends with the same final identification.
-</td>
-<td>
-Strong chronological clarity, good contextual layering, more pedagogical explanation, richer historical framing. Slightly redundant and includes extra content.
-</td>
-</tr>
-
-</table>
-<br>
-
-<p>
-Key comparison insight:
-ChatGPT style → compressed encyclopedic answer: prioritizes directness and final resolution, with selective context.
-Gemini style → explanatory scaffolding: prioritizes didactic progression, even when the conclusion is already known.
-</p>
 <hr>
 
-<h3>Experiment 2 — Alternative English Title Verification</h3>
-
-<p><b>Promt:</b></p>
+<h2>2. Identification of the Second Gap — Missing English Label Verification</h2>
 
 <p>
-Does The Calling of Saint Matthew by Caravaggio have any alternative English title?
+The aim of this step was to verify whether the cultural property
+“Vocazione di S. Matteo” is also represented in the ArCo knowledge graph using its English title,
+“The Calling of Saint Matthew”.
 </p>
 
-<br>
-
-<p><b>Chat:</b></p>
-
 <p>
-Yes. The Calling of Saint Matthew is most commonly known in English as “The Calling of Saint Matthew”, but you’ll also see a few close variants:
-“The Call of Saint Matthew” (a less common but still used shortening)
-“The Calling of St Matthew” (same meaning, just abbreviated “Saint” → “St”)
-Its original Italian title is La vocazione di San Matteo, which translates directly as “The Calling of Saint Matthew.”
-In practice, art historians and museum labels almost always prefer “The Calling of Saint Matthew,” but the variants you’ll encounter in books and catalogs are usually just minor wording or abbreviation differences rather than truly distinct alternative titles.
+In particular, we wanted to check whether querying the dataset using the English label would return a positive match in SPARQL.
 </p>
 
-<br>
-
-<p><b>Gemini:</b></p>
-
-<p>
-Yes, The Calling of Saint Matthew is occasionally referred to by a few slight variations in English, primarily reflecting differences in punctuation, abbreviation, or biblical nomenclature:
-The Calling of St. Matthew – The most common stylistic variation, simply using the standard abbreviation for "Saint."
-The Calling of Matthew – A shortened variant used in some art historical indexes or broad catalog descriptions.
-The Calling of Levi – A title variant rooted in biblical context. In the Gospels of Mark and Luke, the tax collector is referred to as "Levi" before his conversion and subsequent renaming as Matthew. Because the painting explicitly depicts his life at the custom house right at the moment of his transformation, some historical discussions or theological analyses reference the scene under this name.
-</p>
-
-<br>
-
-<h3>LLM Output Summary — Experiment 2</h3>
-
-<table class="llm-table">
-
-<tr>
-<th>Model</th>
-<th>Strengths</th>
-<th>Limitations</th>
-</tr>
-
-<tr>
-<td class="model-name">ChatGPT</td>
-<td>
-Clear listing of minor English variants, includes original Italian title (La vocazione di San Matteo), and emphasizes that differences are mostly stylistic rather than semantic.
-</td>
-<td>
-Limited historical or biblical contextual expansion; focuses mainly on linguistic variation.
-</td>
-</tr>
-
-<tr>
-<td class="model-name">Gemini</td>
-<td>
-Includes alternative title “The Calling of Levi” with strong biblical justification and contextual explanation of Gospel origins.
-</td>
-<td>
-More expansive than required, shifts from title comparison into theological interpretation.
-</td>
-</tr>
-
-</table>
-
-<br>
+<div class="expl">
+<h3>Methodology</h3>
 
 <p>
-Key comparison insight:
-ChatGPT focuses on lexical and usage-based variation, while Gemini extends into interpretive and biblical reasoning for naming differences.
+To test this, we executed an ASK SPARQL query to verify whether any resource in the dataset
+contains the English label.
 </p>
 </div>
+
+<h3>SPARQL Query (ASK)</h3>
+
+<pre>
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+
+ASK {
+  ?work rdfs:label ?label .
+  FILTER(LANG(?label) = "en")
+  FILTER(?label = "The Calling of Saint Matthew")
+}
+</pre>
+
+<h3>Result</h3>
+
+<p>
+The query returned: <b>FALSE</b>.
+</p>
+
+<p>
+This result highlights a multilingual representation gap in the dataset.
+Although ArCo provides structured and rich metadata for the artwork,
+the labeling is not consistently available in English.
+</p>
+
+<p>
+As a result, the English title cannot be used directly to retrieve the resource via a label-based SPARQL query.
+</p>
+</div>
+
 <footer>
 SPARQL Analysis | KE4H Project © 2026
 </footer>
