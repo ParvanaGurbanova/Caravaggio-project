@@ -66,10 +66,7 @@ pre{
     overflow-x:auto;
     border-radius:10px;
     font-size:13px;
-}
-
-h2{
-    margin-top:30px;
+    white-space:pre-wrap;
 }
 
 footer{
@@ -81,15 +78,10 @@ footer{
     border-top:3px solid #c9a227;
 }
 
-.table-box{
-    margin-top:20px;
-    overflow-x:auto;
-}
-
 table{
     width:100%;
     border-collapse:collapse;
-    margin-top:10px;
+    margin-top:20px;
 }
 
 table th, table td{
@@ -101,6 +93,38 @@ table th, table td{
 table th{
     background:#f2f2f2;
 }
+
+.query-img{
+    display:block;
+    width:100%;
+    max-width:500px;
+    margin:20px auto;
+    border-radius:10px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+}
+
+.llm-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    font-size:14px;
+}
+
+.llm-table th, .llm-table td{
+    border:1px solid #ddd;
+    padding:14px;
+    vertical-align:top;
+}
+
+.llm-table th{
+    background:#1b1b1b;
+    color:white;
+}
+
+.model-name{
+    font-weight:bold;
+    color:#c9a227;
+} 
 </style>
 </head>
 
@@ -123,87 +147,206 @@ table th{
 
 <div class="container">
 
-<h2>Methodology</h2>
+<h2>LLM Analysis</h2>
+
+<p>
+Chain-of-Thought (Few-shot Prompting Technique)
+</p>
 
 <p>
 In this experiment, we applied a few-shot chain-of-thought prompting strategy to evaluate how large language models handle complex historical commission chains.
-A structured example (Eiffel Tower commissioning process) was provided to guide reasoning patterns. The aim was to test whether models can transfer a clear
-“designer → commissioner → final attribution” structure to an art-historical case.
+A structured example (Eiffel Tower commissioning process) was provided to the models in order to guide their reasoning format. The goal was to test whether models could correctly transfer a clear “designer → commissioner → final attribution” reasoning pattern to a more complex art-historical case.
 </p>
 
-<h2>Prompt Setup</h2>
-
-<pre>
-Q1: Who designed the Eiffel Tower?
-
-A1:
-Step 1: The Eiffel Tower is a landmark in Paris...
-Step 2: It was built for the 1889 World’s Fair...
-Step 3: Gustave Eiffel was responsible...
-Step 4: Historical records confirm...
-Final Answer: Gustave Eiffel.
-</pre>
+<p><b>Promt:</b></p>
 
 <p>
-Who is the original commissioner of Caravaggio’s <i>The Calling of Saint Matthew</i>?
+Q1: Who designed the Eiffel Tower?
 </p>
 
-<h2>Model Outputs</h2>
+<p><b>A1:</b></p>
 
-<div class="table-box">
+<p>
+Step 1: The Eiffel Tower is a landmark in Paris, France and was built for the 1889 World’s Fair.
+</p>
 
-<table>
+<p>
+Step 2: It was constructed as the entrance arch to the exposition celebrating the 100th anniversary of the French Revolution.
+</p>
+
+<p>
+Step 3: The engineer responsible for its design and construction was Gustave Eiffel’s company, led by Gustave Eiffel.
+</p>
+
+<p>
+Step 4: Historical records confirm that Gustave Eiffel was the principal designer of the Eiffel Tower.
+</p>
+
+<p>
+Final Answer: Gustave Eiffel.
+</p>
+<img src="images/llm2.jpg" class="query-img" alt="ChatGPT output">
+
+<br>
+
+<p>
+Who is the original commissioner of Caravaggio’s The Calling of Saint Matthew? Let’s think step by step.
+</p>
+
+<br>
+
+<p><b>Chat:</b></p>
+
+<p>
+We don’t have to reconstruct this in steps—the commissioning history is pretty well documented.
+The Calling of Saint Matthew was commissioned as part of the decoration of the Contarelli Chapel in San Luigi dei Francesi in Rome.
+The original patron who left the funds and established the commission was the French cardinal Mathieu Cointrel (Italian: Matteo Contarelli).
+After Contarelli’s death, the execution of the project was handled through his estate and church administrators, but the commission itself traces back to him.
+</p>
+
+<p>
+Final Answer: Cardinal Mathieu Cointrel (Matteo Contarelli).
+</p>
+<img src="images/llm1.jpg" class="query-img" alt="Gemini output">
+
+<br>
+
+<p><b>Gemini:</b></p>
+
+<p>
+Step 1: The Calling of Saint Matthew is a masterpiece located in the Contarelli Chapel within the church of San Luigi dei Francesi in Rome, Italy.
+</p>
+
+<p>
+Step 2: The chapel itself was acquired by the French Cardinal Matthieu Cointerel (known in Italian as Matteo Contarelli).
+</p>
+
+<p>
+Step 3: Before his death in 1585, Cardinal Contarelli left a substantial endowment along with strict instructions in his will detailing how the chapel should be decorated with scenes honoring his namesake, Saint Matthew.
+</p>
+
+<p>
+Step 4: Although Caravaggio was awarded the contract years later in 1599 through the intervention of his patron, Cardinal Francesco Maria del Monte, historical records establish that the initial funding and mandate came directly from the late cardinal's estate.
+</p>
+
+<p>
+Final Answer: Cardinal Matthieu Cointerel (Matteo Contarelli).
+</p>
+
+<br>
+
+<h3>LLM Output Summary</h3>
+
+<table border="1" cellpadding="10" cellspacing="0">
+
 <tr>
 <th>Model</th>
-<th>Output Summary</th>
+<th>Strengths</th>
+<th>Limitations</th>
 </tr>
 
 <tr>
-<td><b>ChatGPT</b></td>
+<td class="model-name">ChatGPT</td>
 <td>
-Identifies Cardinal Mathieu Cointrel (Matteo Contarelli) as the commissioner.
-Highlights Contarelli Chapel context and notes posthumous execution of commission.
-Provides a direct final answer with minimal narrative expansion.
+Directly identifies Cardinal Mathieu Cointrel (Matteo Contarelli) as the commissioner, briefly mentions the Contarelli Chapel, and adds a clarification about posthumous execution of the project. Ends with a concise final answer.
+</td>
+<td>
+Highly direct, minimal narrative noise, clear final resolution, includes key historical nuance (estate execution vs original commission).
 </td>
 </tr>
 
 <tr>
-<td><b>Gemini</b></td>
+<td class="model-name">Gemini</td>
 <td>
-Uses step-by-step reasoning:
-location → patron → will → execution phase.
-Provides richer historical scaffolding and contextual depth.
-Ends with the same commissioner identification.
+Structured in “steps,” progressively building from location → patron → will → later execution. Includes historical detail and ends with the same final identification.
+</td>
+<td>
+Strong chronological clarity, good contextual layering, more pedagogical explanation, richer historical framing. Slightly redundant and includes extra content.
 </td>
 </tr>
 
 </table>
-</div>
-
-<h2>Comparative Analysis</h2>
-
-<h3>Strengths</h3>
-<ul>
-<li><b>ChatGPT:</b> concise, direct, clear final answer, minimal noise.</li>
-<li><b>Gemini:</b> structured reasoning, strong historical context, pedagogical explanation.</li>
-</ul>
-
-<h3>Limitations</h3>
-<ul>
-<li><b>ChatGPT:</b> limited step-by-step explanation, less historical expansion.</li>
-<li><b>Gemini:</b> slightly redundant reasoning steps, includes unnecessary external elements.</li>
-</ul>
-
-<h2>Key Insight</h2>
+<br>
 
 <p>
-The comparison shows two different reasoning styles:
-ChatGPT prioritizes compressed encyclopedic output, while Gemini emphasizes structured explanatory reasoning.
-Both converge on the same historical conclusion but differ in presentation depth and narrative style.
+Key comparison insight:
+ChatGPT style → compressed encyclopedic answer: prioritizes directness and final resolution, with selective context.
+Gemini style → explanatory scaffolding: prioritizes didactic progression, even when the conclusion is already known.
+</p>
+<hr>
+
+<h3>Experiment 2 — Alternative English Title Verification</h3>
+
+<p><b>Promt:</b></p>
+
+<p>
+Does The Calling of Saint Matthew by Caravaggio have any alternative English title?
 </p>
 
-</div>
+<br>
 
+<p><b>Chat:</b></p>
+
+<p>
+Yes. The Calling of Saint Matthew is most commonly known in English as “The Calling of Saint Matthew”, but you’ll also see a few close variants:
+“The Call of Saint Matthew” (a less common but still used shortening)
+“The Calling of St Matthew” (same meaning, just abbreviated “Saint” → “St”)
+Its original Italian title is La vocazione di San Matteo, which translates directly as “The Calling of Saint Matthew.”
+In practice, art historians and museum labels almost always prefer “The Calling of Saint Matthew,” but the variants you’ll encounter in books and catalogs are usually just minor wording or abbreviation differences rather than truly distinct alternative titles.
+</p>
+
+<br>
+
+<p><b>Gemini:</b></p>
+
+<p>
+Yes, The Calling of Saint Matthew is occasionally referred to by a few slight variations in English, primarily reflecting differences in punctuation, abbreviation, or biblical nomenclature:
+The Calling of St. Matthew – The most common stylistic variation, simply using the standard abbreviation for "Saint."
+The Calling of Matthew – A shortened variant used in some art historical indexes or broad catalog descriptions.
+The Calling of Levi – A title variant rooted in biblical context. In the Gospels of Mark and Luke, the tax collector is referred to as "Levi" before his conversion and subsequent renaming as Matthew. Because the painting explicitly depicts his life at the custom house right at the moment of his transformation, some historical discussions or theological analyses reference the scene under this name.
+</p>
+
+<br>
+
+<h3>LLM Output Summary — Experiment 2</h3>
+
+<table class="llm-table">
+
+<tr>
+<th>Model</th>
+<th>Strengths</th>
+<th>Limitations</th>
+</tr>
+
+<tr>
+<td class="model-name">ChatGPT</td>
+<td>
+Clear listing of minor English variants, includes original Italian title (La vocazione di San Matteo), and emphasizes that differences are mostly stylistic rather than semantic.
+</td>
+<td>
+Limited historical or biblical contextual expansion; focuses mainly on linguistic variation.
+</td>
+</tr>
+
+<tr>
+<td class="model-name">Gemini</td>
+<td>
+Includes alternative title “The Calling of Levi” with strong biblical justification and contextual explanation of Gospel origins.
+</td>
+<td>
+More expansive than required, shifts from title comparison into theological interpretation.
+</td>
+</tr>
+
+</table>
+
+<br>
+
+<p>
+Key comparison insight:
+ChatGPT focuses on lexical and usage-based variation, while Gemini extends into interpretive and biblical reasoning for naming differences.
+</p>
+</div>
 <footer>
 SPARQL Analysis | KE4H Project © 2026
 </footer>
