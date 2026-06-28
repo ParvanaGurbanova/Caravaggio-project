@@ -81,27 +81,24 @@ footer{
     border-top:3px solid #c9a227;
 }
 
-.expl{
-    background:#f8f8f8;
-    border-left:4px solid #c9a227;
-    padding:15px 20px;
-    margin:20px 0;
-    border-radius:8px;
+.table-box{
+    margin-top:20px;
+    overflow-x:auto;
 }
 
-.table{
+table{
     width:100%;
     border-collapse:collapse;
-    margin-top:20px;
+    margin-top:10px;
 }
 
-.table th, .table td{
+table th, table td{
     border:1px solid #ddd;
     padding:12px;
     vertical-align:top;
 }
 
-.table th{
+table th{
     background:#f2f2f2;
 }
 </style>
@@ -110,8 +107,8 @@ footer{
 <body>
 
 <header>
-<h1>LLM Analysis</h1>
-<p>Chain-of-Thought (Few-shot Prompting Technique)</p>
+<h1>The Calling of Saint Matthew</h1>
+<p>Michelangelo Merisi da Caravaggio (1599–1600)</p>
 </header>
 
 <nav>
@@ -121,58 +118,52 @@ footer{
 <a href="llm.html">LLM Analysis</a>
 <a href="rdf.html">RDF Triples</a>
 <a href="challenges.html">Challenges</a>
-<a href="conclusion.html">Conclusion</a>
+<a href="conclusion.html">Concluision</a>
 </nav>
 
 <div class="container">
 
-<h2>1. Experiment Overview</h2>
+<h2>Methodology</h2>
 
 <p>
-In this experiment, we applied a few-shot chain-of-thought prompting strategy to evaluate how large language models handle historical commission reasoning.
-A structured example (Eiffel Tower commissioning process) was used to guide reasoning patterns.
+In this experiment, we applied a few-shot chain-of-thought prompting strategy to evaluate how large language models handle complex historical commission chains.
+A structured example (Eiffel Tower commissioning process) was provided to guide reasoning patterns. The aim was to test whether models can transfer a clear
+“designer → commissioner → final attribution” structure to an art-historical case.
 </p>
+
+<h2>Prompt Setup</h2>
+
+<pre>
+Q1: Who designed the Eiffel Tower?
+
+A1:
+Step 1: The Eiffel Tower is a landmark in Paris...
+Step 2: It was built for the 1889 World’s Fair...
+Step 3: Gustave Eiffel was responsible...
+Step 4: Historical records confirm...
+Final Answer: Gustave Eiffel.
+</pre>
 
 <p>
-The goal was to test whether models could transfer a structured “designer → commissioner → final attribution” reasoning model to Caravaggio’s <i>The Calling of Saint Matthew</i>.
+Who is the original commissioner of Caravaggio’s <i>The Calling of Saint Matthew</i>?
 </p>
 
-<h2>2. Prompt Structure</h2>
+<h2>Model Outputs</h2>
 
-<div class="expl">
+<div class="table-box">
 
-<p><b>Example Task:</b> Who designed the Eiffel Tower?</p>
-
-<p>
-Step 1: Built for 1889 World’s Fair<br>
-Step 2: Entrance arch structure<br>
-Step 3: Gustave Eiffel’s company<br>
-Step 4: Gustave Eiffel is the designer<br><br>
-
-<b>Final Answer:</b> Gustave Eiffel
-</p>
-
-<hr>
-
-<p><b>Target Question:</b><br>
-Who is the original commissioner of Caravaggio’s The Calling of Saint Matthew?
-</p>
-
-</div>
-
-<h2>3. Model Outputs</h2>
-
-<table class="table">
+<table>
 <tr>
 <th>Model</th>
-<th>Response</th>
+<th>Output Summary</th>
 </tr>
 
 <tr>
 <td><b>ChatGPT</b></td>
 <td>
-Directly identifies Cardinal Mathieu Cointrel (Matteo Contarelli) as commissioner.
-Mentions Contarelli Chapel and estate execution context.
+Identifies Cardinal Mathieu Cointrel (Matteo Contarelli) as the commissioner.
+Highlights Contarelli Chapel context and notes posthumous execution of commission.
+Provides a direct final answer with minimal narrative expansion.
 </td>
 </tr>
 
@@ -180,61 +171,41 @@ Mentions Contarelli Chapel and estate execution context.
 <td><b>Gemini</b></td>
 <td>
 Uses step-by-step reasoning:
-location → patron → will → posthumous execution.
-More detailed historical breakdown.
+location → patron → will → execution phase.
+Provides richer historical scaffolding and contextual depth.
+Ends with the same commissioner identification.
 </td>
 </tr>
+
 </table>
-
-<h2>4. Comparative Analysis</h2>
-
-<table class="table">
-<tr>
-<th>Model</th>
-<th>Strengths</th>
-<th>Limitations</th>
-</tr>
-
-<tr>
-<td><b>ChatGPT</b></td>
-<td>
-Direct, concise, accurate final answer, minimal noise
-</td>
-<td>
-Lacks explicit step-by-step reasoning structure
-</td>
-</tr>
-
-<tr>
-<td><b>Gemini</b></td>
-<td>
-Strong chronological explanation, pedagogical clarity
-</td>
-<td>
-More verbose, slightly redundant steps, includes extra content
-</td>
-</tr>
-</table>
-
-<h2>5. Key Insight</h2>
-
-<div class="expl">
-<p>
-ChatGPT follows a <b>compressed encyclopedic reasoning style</b>, focusing on direct answers.</p>
-
-<p>
-Gemini follows a <b>structured pedagogical reasoning style</b>, emphasizing step-by-step explanation.</p>
-
-<p>
-Both models converge on the same conclusion:
-<b>Cardinal Mathieu Cointrel (Matteo Contarelli)</b>.
-</p>
 </div>
+
+<h2>Comparative Analysis</h2>
+
+<h3>Strengths</h3>
+<ul>
+<li><b>ChatGPT:</b> concise, direct, clear final answer, minimal noise.</li>
+<li><b>Gemini:</b> structured reasoning, strong historical context, pedagogical explanation.</li>
+</ul>
+
+<h3>Limitations</h3>
+<ul>
+<li><b>ChatGPT:</b> limited step-by-step explanation, less historical expansion.</li>
+<li><b>Gemini:</b> slightly redundant reasoning steps, includes unnecessary external elements.</li>
+</ul>
+
+<h2>Key Insight</h2>
+
+<p>
+The comparison shows two different reasoning styles:
+ChatGPT prioritizes compressed encyclopedic output, while Gemini emphasizes structured explanatory reasoning.
+Both converge on the same historical conclusion but differ in presentation depth and narrative style.
+</p>
 
 </div>
 
 <footer>
-LLM Analysis | KE4H Project © 2026
+SPARQL Analysis | KE4H Project © 2026
 </footer>
 
 </body>
