@@ -100,11 +100,10 @@ footer{
     font-family:Consolas, monospace;
 }
 
-/* ✅ Query şəkilləri */
 .query-img{
     display:block;
     width:100%;
-    max-width:700px;
+    max-width:500px;
     margin:20px auto;
     border-radius:10px;
     box-shadow:0 8px 20px rgba(0,0,0,0.15);
@@ -275,9 +274,74 @@ From an interpretative perspective, this stage shows that the dataset has been p
 <p>
 As a result, the dataset is fully disambiguated, and the Saint Matthew cycle is correctly reconstructed, reflecting a coherent and accurate representation of Caravaggio’s works within the knowledge graph.
 </p>
+    
 
 </div>
 
+<hr>
+
+<!-- QUERY 4 -->
+<h2>Query 4 — Investigating used properties for “Vocazione di S. Matteo” (Caravaggio)</h2>
+
+<p>
+The aim of this query was to understand which properties and vocabularies are used in the ArCo dataset to describe the artwork “Vocazione di S. Matteo” (also known as The Calling of Saint Matthew) by Caravaggio.
+By extracting all predicate–object pairs associated with the resource, we aimed to identify which ontologies are used, what type of information is attached, and how rich the semantic description of the artwork is.
+</p>
+
+<div class="expl">
+
+<h3>Explanation of keywords used:</h3>
+
+<ul>
+  <li><b><code>?property ?value</code></b>: returns predicate–object pairs describing the resource.</li>
+  <li><b><code>ORDER BY ?property</code></b>: sorts results alphabetically by property URI.</li>
+  <li><b><code>OPTIONAL</code></b>: retrieves labels for properties when available, without breaking results.</li>
+</ul>
+
+</div>
+
+<pre>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?property ?propertyLabel ?value
+WHERE {
+  <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200705423> ?property ?value .
+
+  OPTIONAL {
+    ?property rdfs:label ?propertyLabel .
+  }
+}
+ORDER BY ?property
+</pre>
+
+<img src="images/query4.jpg" class="query-img">
+
+<h3>Results</h3>
+
+<p>
+The query shows that the artwork is described through a rich and heterogeneous RDF structure, involving multiple vocabularies.
+</p>
+
+<p>
+1️⃣ General metadata (Dublin Core): creator (Caravaggio), title/type, date, identifier, rights and source information.
+</p>
+
+<p>
+2️⃣ Cultural heritage structure (ArCo ontology): authorship, catalogue record links, legal situation, and cataloguing information.
+</p>
+
+<p>
+3️⃣ Artistic information: material and technique (oil on canvas), conservation status, and cultural property classification.
+</p>
+
+<p>
+4️⃣ Iconographic content: subject references such as “Vocazione di S. Matteo” and figures like S. Pietro.
+</p>
+
+<p>
+5️⃣ Spatial representation: linked address resource resolving the artwork location to Rome (Italy).
+</p>
+      
 <footer>
 SPARQL Analysis | KE4H Project © 2026
 </footer>
