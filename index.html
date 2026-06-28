@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>KE4H Project | The Calling of Saint Matthew</title>
+<title>The Calling of Saint Matthew | KE4H Project</title>
 
 <style>
 body{
@@ -65,8 +65,9 @@ nav a:hover{
 }
 
 .hero img{
-    width:100%;
-    max-width:900px;
+    width:80%;
+    max-width:650px;
+    height:auto;
     border-radius:14px;
     box-shadow:0 15px 35px rgba(0,0,0,0.25);
     border:4px solid #fff;
@@ -124,8 +125,8 @@ footer{
 <body>
 
 <header>
-<h1>KE4H Project</h1>
-<p>Knowledge Graph Enrichment using Large Language Models</p>
+<h1>The Calling of Saint Matthew</h1>
+<p>Michelangelo Merisi da Caravaggio (1599–1600)</p>
 </header>
 
 <nav>
@@ -141,12 +142,13 @@ footer{
 <!-- HERO -->
 <section class="hero">
 
-<img src="calling.jpg">    
+<img src="caravaggio.jpg" alt="The Calling of Saint Matthew by Caravaggio">
+
 <h2>The Calling of Saint Matthew</h2>
 
 <p>
-A masterpiece by Caravaggio representing one of the most iconic moments in Baroque religious art.
-This project explores how Knowledge Graphs and Large Language Models can enrich its semantic description.
+One of Caravaggio's most celebrated masterpieces, depicting the biblical moment when Christ calls Matthew
+to become one of his apostles. The painting is renowned for its dramatic use of light, realism, and symbolic depth.
 </p>
 
 </section>
@@ -157,20 +159,23 @@ This project explores how Knowledge Graphs and Large Language Models can enrich 
 <h2>Project Introduction</h2>
 
 <p>
-This project explores the integration of Knowledge Graphs (KGs) and Large Language Models (LLMs)
-for enriching cultural heritage data. The selected case study is
-<i>The Calling of Saint Matthew</i> by Michelangelo Merisi da Caravaggio, a landmark painting
-of the Baroque period.
+For this project, we selected <i>The Calling of Saint Matthew</i> (1599–1600) by Michelangelo Merisi da Caravaggio,
+one of the defining masterpieces of Baroque art. Commissioned for the Contarelli Chapel in the Church of San Luigi dei Francesi in Rome,
+the painting is celebrated for its innovative use of chiaroscuro, naturalistic style, and powerful depiction of the biblical moment
+in which Christ calls Matthew to become one of his apostles.
 </p>
 
 <p>
-The main objective is to investigate how structured knowledge stored in the ArCo Knowledge Graph
-can be extended using semantic inference and generative capabilities of LLMs.
+We chose this artwork because of its artistic, historical, and religious significance, as well as its rich symbolic content,
+which makes it particularly suitable for semantic representation. Its complex network of people, places, events, and iconographic
+elements provides an excellent case study for exploring how cultural heritage knowledge can be structured and enriched.
 </p>
 
 <p>
-We began by identifying Cultural Properties related to the artwork using SPARQL queries,
-and then progressively refined the dataset by eliminating ambiguity and improving entity precision.
+Within the framework of the Knowledge Engineering for the Humanities (KE4H) course, our objective was to enrich the existing ArCo Knowledge Graph
+by combining SPARQL queries with Large Language Models (LLMs). Our work focused on extending the available metadata by adding information
+about the painting's commissioner and by providing English labels and descriptions alongside the existing Italian ones,
+improving both completeness and multilingual accessibility.
 </p>
 
 <hr>
@@ -178,25 +183,18 @@ and then progressively refined the dataset by eliminating ambiguity and improvin
 <h2>SPARQL Exploration Summary</h2>
 
 <p>
-We started with a query designed to retrieve Cultural Properties related to the iconography of
-The Calling of Saint Matthew. To improve recall, we used <b>FILTER</b> and <b>REGEX</b>
-to match different textual variations such as “vocazione di San Matteo”, “San Matteo”, and “Caravaggio”.
+We started with a query designed to retrieve Cultural Properties related to The Calling of Saint Matthew.
+To improve recall, we used FILTER and REGEX to match different textual variations such as “vocazione di San Matteo”, “San Matteo”, and “Caravaggio”.
 </p>
 
 <p>
-We applied <b>DISTINCT</b> to remove duplicates caused by multilingual labels in ArCo (Italian and English).
-The results included paintings, sculptures, and decorative works associated with Saint Matthew.
+We applied DISTINCT to remove duplicates caused by multilingual labels in ArCo (Italian and English).
+The results included multiple artworks associated with Saint Matthew.
 </p>
 
 <p>
-However, we observed ambiguity in the dataset: some results referred to works by Michelangelo Merisi da Caravaggio,
-while others referenced artists whose names include “da Caravaggio” or stylistic expressions such as
-“maniera di Caravaggio”. This introduced noise and showed that lexical matching alone is insufficient.
-</p>
-
-<p>
-To resolve this issue, we refined the query by focusing on author attribution,
-ensuring correct identification of Caravaggio-related works only.
+However, we observed ambiguity in the dataset due to stylistic and authorial variations, which required refinement of author-based filtering
+to ensure correct identification of Caravaggio’s works.
 </p>
 
 <hr>
@@ -206,17 +204,19 @@ ensuring correct identification of Caravaggio-related works only.
 <div style="text-align:center;">
 
 <img src="team.jpg"
-     alt="Parvana Gurbanova and Elnara Tumarkhanova"
+     alt="Research team"
      style="width:320px; max-width:90%; border-radius:16px; box-shadow:0 10px 25px rgba(0,0,0,0.2);">
-    
-    <p style="margin-top:15px; font-size:18px;">
-        <b>Parvana Gurbanova & Elnara Tumarkhanova</b>
-    </p>
+
+<p style="margin-top:15px; font-size:18px;">
+<b>Parvana Gurbanova & Elnara Tumarkhanova</b>
+</p>
+
+</div>
 
 </div>
 
 <footer>
-<p>KE4H Project © 2026 | Knowledge Graph & LLM Integration</p>
+<p>The Calling of Saint Matthew | KE4H Project © 2026</p>
 </footer>
 
 </body>
