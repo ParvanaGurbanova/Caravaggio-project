@@ -177,6 +177,56 @@ The query returned <b>false</b>.
 This confirms the absence of commissioning-related relations in the dataset, indicating that the commissioning context is not explicitly modeled for this cultural property.
 </p>
 
+<hr>
+
+<h2>2. Identification of the Second Gap — Missing English Label Verification</h2>
+
+<p>
+The aim of this step was to verify whether the cultural property
+“Vocazione di S. Matteo” is also represented in the ArCo knowledge graph using its English title,
+“The Calling of Saint Matthew”.
+</p>
+
+<p>
+In particular, we wanted to check whether querying the dataset using the English label would return a positive match in SPARQL.
+</p>
+
+<div class="expl">
+<h3>Methodology</h3>
+
+<p>
+To test this, we executed an ASK SPARQL query to verify whether any resource in the dataset
+contains the English label.
+</p>
+</div>
+
+<h3>SPARQL Query (ASK)</h3>
+
+<pre>
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+
+ASK {
+  ?work rdfs:label ?label .
+  FILTER(LANG(?label) = "en")
+  FILTER(?label = "The Calling of Saint Matthew")
+}
+</pre>
+
+<h3>Result</h3>
+
+<p>
+The query returned: <b>FALSE</b>.
+</p>
+
+<p>
+This result highlights a multilingual representation gap in the dataset.
+Although ArCo provides structured and rich metadata for the artwork,
+the labeling is not consistently available in English.
+</p>
+
+<p>
+As a result, the English title cannot be used directly to retrieve the resource via a label-based SPARQL query.
+</p>
 </div>
 
 <footer>
