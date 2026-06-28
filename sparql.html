@@ -148,15 +148,15 @@ We began with a broad survey to obtain all Cultural Properties related to Saint 
 </div>
 
 <pre>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX arco: <https://w3id.org/arco/ontology/arco/>
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
 
 SELECT DISTINCT ?cp ?label
 WHERE {
- ?cp a arco:HistoricOrArtisticProperty ;
-     rdfs:label ?label .
+  ?cp a arco:HistoricOrArtisticProperty ;
+      rdfs:label ?label .
 
- FILTER(REGEX(?label, "san matteo|vocazione|simbolo", "i"))
+  FILTER(REGEX(?label, "san matteo|vocazione|simbolo", "i"))
 }
 </pre>
 
@@ -199,26 +199,26 @@ We improved the query to include author information in order to separate works b
 </div>
 
 <pre>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX arco: <https://w3id.org/arco/ontology/arco/>
-PREFIX a-cd: <https://w3id.org/arco/ontology/context-description/>
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
+PREFIX a-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt;
 
 SELECT DISTINCT ?cp ?label ?authorLabel
 WHERE {
- ?cp a arco:HistoricOrArtisticProperty ;
-     rdfs:label ?label ;
-     a-cd:hasAuthor ?author .
+  ?cp a arco:HistoricOrArtisticProperty ;
+      rdfs:label ?label ;
+      a-cd:hasAuthor ?author .
 
- ?author rdfs:label ?authorLabel .
+  ?author rdfs:label ?authorLabel .
 
- FILTER(
-   REGEX(?authorLabel, "merisi", "i") ||
-   REGEX(?authorLabel, "caravaggio", "i")
- )
+  FILTER(
+    REGEX(?authorLabel, "merisi", "i") ||
+    REGEX(?authorLabel, "caravaggio", "i")
+  )
 
- FILTER(
-   REGEX(?label, "vocazione|san matteo", "i")
- )
+  FILTER(
+    REGEX(?label, "vocazione|san matteo", "i")
+  )
 }
 </pre>
 
@@ -248,14 +248,15 @@ To solve ambiguity, we replaced text-based filtering with exact IRI matching for
 </p>
 
 <pre>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX arco: <https://w3id.org/arco/ontology/arco/>
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
+PREFIX a-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt;
 
 SELECT DISTINCT ?cp ?label
 WHERE {
- ?cp a arco:HistoricOrArtisticProperty ;
-     rdfs:label ?label ;
-     a-cd:hasAuthor <https://w3id.org/arco/resource/Agent/256dd79b8cf8c58e6222b74d5db26c2e> .
+  ?cp a arco:HistoricOrArtisticProperty ;
+      rdfs:label ?label ;
+      a-cd:hasAuthor &lt;https://w3id.org/arco/resource/Agent/256dd79b8cf8c58e6222b74d5db26c2e&gt; .
 }
 </pre>
 
@@ -299,11 +300,12 @@ By extracting all predicate–object pairs associated with the resource, we aime
 </div>
 
 <pre>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
 
 SELECT DISTINCT ?property ?propertyLabel ?value
 WHERE {
-  <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200705423> ?property ?value .
+  &lt;https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200705423&gt;
+  ?property ?value .
 
   OPTIONAL {
     ?property rdfs:label ?propertyLabel .
