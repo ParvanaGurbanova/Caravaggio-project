@@ -110,6 +110,9 @@ footer{
     box-shadow:0 8px 20px rgba(0,0,0,0.15);
 }
 </style>
+</head>
+
+<body>
 
 <header>
 <h1>The Calling of Saint Matthew</h1>
@@ -123,7 +126,7 @@ footer{
 <a href="llm.html">LLM Analysis</a>
 <a href="rdf.html">RDF Triples</a>
 <a href="challenges.html">Challenges</a>
-<a href="conclusion.html">Concluision</a>
+<a href="conclusion.html">Conclusion</a>
 </nav>
 
 <div class="container">
@@ -178,8 +181,70 @@ This confirms the absence of commissioning-related relations in the dataset, ind
 </p>
 
 <hr>
+<h2>2. Identification of the Second Gap — Missing Depicted Subjects</h2>
 
-<h2>2. Identification of the Second Gap — Missing English Label Verification</h2>
+<p>
+After identifying that commissioning information was missing, we continued our investigation by analysing whether the cultural property contains semantic information describing the subjects represented in the painting.
+</p>
+
+<p>
+Representing depicted subjects is an essential aspect of cultural heritage knowledge graphs because it enables semantic search, comparison between artworks, and the identification of cultural properties depicting the same people, events, or religious themes.
+</p>
+
+<p>
+The ArCo ontology models this information through the class <code>a-cd:Subject</code> and the property <code>a-cd:hasSubject</code>. Therefore, we investigated whether the selected artwork was already linked to one or more semantic subject resources.
+</p>
+
+<div class="expl">
+
+<h3>Methodology</h3>
+
+<p>
+To verify whether subject information was already represented, we executed an <b>ASK</b> SPARQL query. Unlike a SELECT query, an ASK query simply checks whether at least one matching triple exists in the knowledge graph and returns either <b>true</b> or <b>false</b>.
+</p>
+
+<p>
+Specifically, we searched for any relationship connecting the cultural property to a semantic subject through the property <code>a-cd:hasSubject</code>.
+</p>
+
+</div>
+
+<h3>SPARQL Query (ASK)</h3>
+
+<pre>
+PREFIX a-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt;
+
+ASK WHERE {
+
+&lt;https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200705423&gt;
+
+a-cd:hasSubject ?subject .
+
+}
+</pre>
+
+<h3>Result</h3>
+
+<p>
+The query returned <b>false</b>.
+</p>
+
+<h3>Discussion</h3>
+
+<p>
+The result indicates that the selected cultural property is not linked to any semantic subject resource through the property <code>a-cd:hasSubject</code>.
+</p>
+
+<p>
+However, <i>The Calling of Saint Matthew</i> clearly depicts several important biblical figures, including Jesus Christ, Saint Matthew, Saint Peter, and a group of tax collectors. Since none of these entities are represented as semantic subjects, the artwork cannot easily be connected with other cultural properties depicting the same iconography.
+</p>
+
+<p>
+This missing semantic information represents an important knowledge gap in the ArCo Knowledge Graph. In the following phase of the project, Large Language Models will be used to identify the depicted subjects from reliable textual descriptions. The extracted knowledge will then be transformed into RDF triples using the existing ArCo ontology by creating <code>a-cd:Subject</code> resources linked through <code>a-cd:hasSubject</code>.
+</p>
+
+<hr>
+<h3>3. Identification of the Third Gap — Missing English Label Verification</h3>
 
 <p>
 The aim of this step was to verify whether the cultural property
