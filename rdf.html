@@ -80,14 +80,15 @@ footer{
     color:#ccc;
     border-top:3px solid #c9a227;
 }
-
-.prompt-box{
-    background:#ffffff;
-    border:1px solid #ddd;
-    border-left:5px solid #c9a227;
-    padding:20px;
-    margin:25px 0;
-    border-radius:10px;
+.prompt-title{
+    font-weight:600;
+    font-size:15px;
+    color:#1b1b1b;
+    background:#f6f6f6;
+    padding:10px 12px;
+    border-left:4px solid #c9a227;
+    margin:15px 0;
+    border-radius:6px;
 }
 .expl{
     background:transparent;
@@ -122,13 +123,12 @@ footer{
 </nav>
 
 <div class="container">
-<div class="prompt-box">
 
 <h2>1. RDF Triples Construction using ArCo Ontologies — Commission</h2>
 
-<p>
+<div class="prompt-title">
 Could you create RDF triples using ArCo ontologies for the following information:
-</p>
+</div>
 
 <p>
 “The original commission for The Calling of Saint Matthew by Caravaggio came from the Contarelli Chapel patronage established by Cardinal Matthieu Cointerel (Matteo Contarelli).”
@@ -201,13 +201,11 @@ WHERE {
 </div>
 
 </div>
-
-<hr>
 <h2>2. RDF Triples — Depicted Subjects (ArCo Context Description)</h2>
-        
-<p>
+
+<div class="prompt-title">
 Could you create RDF triples using ArCo ontologies for the following information:
-</p>
+</div>
 
 <p>
 Artwork: The Calling of Saint Matthew (Caravaggio)
@@ -310,15 +308,78 @@ WHERE {
 
 </div>
 
+</div>
+
+<h3>RDF Triples (ArCo-based representation)</h3>
+
+<pre>
+@prefix a-cd: <https://w3id.org/arco/ontology/context-description/> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200705423>
+    a-cd:hasSubject <https://w3id.org/arco/resource/Subject/Jesus_Christ> ;
+    a-cd:hasSubject <https://w3id.org/arco/resource/Subject/Saint_Peter> ;
+    a-cd:hasSubject <https://w3id.org/arco/resource/Subject/Saint_Matthew_Levi> ;
+    a-cd:hasSubject <https://w3id.org/arco/resource/Subject/Tax_collectors_and_companions> .
+
+<https://w3id.org/arco/resource/Subject/Jesus_Christ>
+    rdf:type a-cd:Subject .
+
+<https://w3id.org/arco/resource/Subject/Saint_Peter>
+    rdf:type a-cd:Subject .
+
+<https://w3id.org/arco/resource/Subject/Saint_Matthew_Levi>
+    rdf:type a-cd:Subject .
+
+<https://w3id.org/arco/resource/Subject/Tax_collectors_and_companions>
+    rdf:type a-cd:Subject .
+</pre>
+
+</div>
+
+<div class="expl">
+
+<h3>SPARQL CONSTRUCT Query</h3>
+
+<pre>
+PREFIX a-cd: <https://w3id.org/arco/ontology/context-description/>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+CONSTRUCT {
+  <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200705423>
+      a-cd:hasSubject ?subject .
+
+  ?subject rdf:type a-cd:Subject .
+}
+WHERE {
+  VALUES ?subject {
+    <https://w3id.org/arco/resource/Subject/Jesus_Christ>
+    <https://w3id.org/arco/resource/Subject/Saint_Peter>
+    <https://w3id.org/arco/resource/Subject/Saint_Matthew_Levi>
+    <https://w3id.org/arco/resource/Subject/Tax_collectors_and_companions>
+  }
+}
+</pre>
+
+</div>
+
 <hr>
 <h2>3. RDF Enrichment — Missing English Label (SPARQL CONSTRUCT)</h2>
+
+<!-- ONLY ONE-LINE TITLE -->
+<div class="prompt-title">
+Prompt
+</div>
+
+<!-- FULL PROMPT CONTENT MOVED HERE -->
+<div class="prompt-box">
 
 <p>
 Could you transform the following information into a SPARQL CONSTRUCT query using the ArCo ontology? Our objective is to create new RDF triples that enrich the ArCo Knowledge Graph.
 </p>
 
 <p>
-The ASK query returned FALSE, indicating that the English standardized label "The Calling of Saint Matthew" is not explicitly present in the dataset. This reveals a multilingual labeling gap for the artwork described by the catalogue record.
+The ASK query returned FALSE, indicating that the English standardized label "The Calling of Saint Matthew" is not explicitly present in the dataset.
 </p>
 
 <p>
@@ -327,7 +388,11 @@ https://w3id.org/arco/resource/CatalogueRecordOA/1200705423
 </p>
 
 <p>
-This catalogue record describes a cultural property (HistoricOrArtisticProperty) in the ArCo Knowledge Graph. The enrichment must be applied to the actual cultural property, not to the catalogue record itself.
+This catalogue record describes a cultural property (HistoricOrArtisticProperty) in the ArCo Knowledge Graph.
+</p>
+
+<p>
+The enrichment must be applied to the actual cultural property, not to the catalogue record itself.
 </p>
 
 <p>
@@ -344,16 +409,17 @@ Alternative English labels:<br>
 </p>
 
 <p>
-Note that:
+Rules:
+<br>
+- Only existing entities must be used<br>
+- No new cultural property or catalogue record should be created<br>
+- Use rdfs:label for preferred label<br>
+- Use skos:altLabel for alternative labels
 </p>
 
-<p>
-The query must first retrieve the HistoricOrArtisticProperty linked via the appropriate ArCo property (e.g., a-cat:describesCulturalProperty).<br>
-Only existing entities must be used; no new cultural property or catalogue record should be created.<br>
-The output must be a SPARQL CONSTRUCT query.<br>
-Use rdfs:label for the preferred English label and skos:altLabel for alternative labels where appropriate.
-</p>
+</div>
 
+<!-- OUTPUT SECTION -->
 <div class="expl">
 
 <h3>SPARQL CONSTRUCT Query</h3>
@@ -362,7 +428,7 @@ Use rdfs:label for the preferred English label and skos:altLabel for alternative
 PREFIX a-cat: <https://w3id.org/arco/ontology/catalogue/>
 PREFIX arco: <https://w3id.org/arco/ontology/arco/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX skos: <http://www.w3.org/2004/01/skos/core#>
 
 CONSTRUCT {
   ?cp rdfs:label "The Calling of Saint Matthew"@en .
@@ -380,8 +446,6 @@ WHERE {
 }
 </pre>
 
-</div>
-<hr>
 </div>
 
 <footer>
