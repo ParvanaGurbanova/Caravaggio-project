@@ -90,6 +90,32 @@ footer{
     margin:15px 0;
     border-radius:6px;
 }
+
+.prompt{
+    background:#f7f7f7;
+    border-left:5px solid #c9a227;
+    padding:20px;
+    margin:20px 0 30px;
+    border-radius:10px;
+    font-family: Consolas, Monaco, "Courier New", monospace;
+    white-space:pre-wrap;
+    color:#333;
+    font-size:14px;
+    line-height:1.7;
+}
+
+.prompt-header{
+    display:inline-block;
+    background:#c9a227;
+    color:#111;
+    font-weight:bold;
+    font-size:13px;
+    padding:5px 12px;
+    border-radius:5px;
+    margin-bottom:12px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
 .expl{
     background:transparent;
     border:none;
@@ -126,32 +152,32 @@ footer{
 
 <h2>1. RDF Triples Construction using ArCo Ontologies — Commission</h2>
 
-<div class="prompt-title">
-Could you create RDF triples using ArCo ontologies for the following information:
+<div class="prompt">
+
+<div class="prompt-header">
+LLM Prompt
 </div>
 
-<p>
-“The original commission for The Calling of Saint Matthew by Caravaggio came from the Contarelli Chapel patronage established by Cardinal Matthieu Cointerel (Matteo Contarelli).”
-</p>
+Could you create RDF triples using ArCo ontologies for the following information?
 
-<p>
+"The original commission for The Calling of Saint Matthew by Caravaggio came from the Contarelli Chapel patronage established by Cardinal Matthieu Cointerel (Matteo Contarelli)."
+
 Knowing that:
-</p>
 
-<p>
-IRI of the cultural property (HistoricOrArtisticProperty): https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200705423<br>
-The commission information refers to a patronage/commissioning relationship between a cultural property and an agent (commissioner/patron)<br>
-The commissioner “Cardinal Matthieu Cointerel (Matteo Contarelli)” is not present in ArCo, so we need to propose a custom IRI for this agent<br>
-The commission should be represented using an ArCo context-description property related to commissioning or patronage (if available in the ontology), otherwise a generic agent–cultural property relationship from the ArCo context-description module should be used
-</p>
+• IRI of the cultural property (HistoricOrArtisticProperty):
+https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200705423
 
-<p>
+• The commission information refers to a patronage/commissioning relationship between a cultural property and an agent (commissioner/patron).
+
+• The commissioner "Cardinal Matthieu Cointerel (Matteo Contarelli)" is not present in ArCo, so a custom IRI should be proposed.
+
+• The commission should be represented using an ArCo context-description property related to commissioning or patronage (if available in the ontology), otherwise use a generic agent–cultural property relationship.
+
 Also, please build the corresponding SPARQL CONSTRUCT query.
-</p>
 
-<p>
-Let’s think step by step.
-</p>
+Let's think step by step.
+
+</div>
 
 <div class="expl">
 
@@ -203,112 +229,59 @@ WHERE {
 </div>
 <h2>2. RDF Triples — Depicted Subjects (ArCo Context Description)</h2>
 
-<div class="prompt-title">
-Could you create RDF triples using ArCo ontologies for the following information:
+<div class="prompt-box">
+
+<div class="prompt-header">
+💬 Prompt submitted to ChatGPT
 </div>
 
-<p>
-Artwork: The Calling of Saint Matthew (Caravaggio)
-</p>
+<div class="prompt-content">
+
+<p><strong>Task</strong></p>
 
 <p>
-Subjects: Jesus Christ, Saint Peter, Saint Matthew (Levi), the tax collectors / companions
+Create RDF triples using the <strong>ArCo ontology</strong> for the depicted subjects of
+<em>The Calling of Saint Matthew</em> by Caravaggio.
 </p>
 
-<p>
-Knowing that:
-</p>
+<p><strong>Artwork Information</strong></p>
 
-<p>
-IRI of the cultural property (HistoricOrArtisticProperty):<br>
-https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200705423
-</p>
+<ul>
+    <li><strong>Artwork:</strong> The Calling of Saint Matthew (Caravaggio)</li>
+    <li><strong>Subjects:</strong> Jesus Christ, Saint Peter, Saint Matthew (Levi), the tax collectors / companions</li>
+    <li><strong>Cultural Property IRI:</strong><br>
+    https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200705423
+    </li>
+</ul>
 
-<p>
-The depicted subject information refers to a semantic relationship between a cultural property and the entities it represents in the scene.
-</p>
+<p><strong>Modeling Requirements</strong></p>
 
-<p>
-The ArCo ontology provides the class a-cd:Subject and the property a-cd:hasSubject to represent depicted subjects. Therefore, this relationship must be modeled using these terms.
-</p>
+<ul>
+    <li>The depicted subject information represents the semantic relationship between the cultural property and the figures represented in the artwork.</li>
 
-<p>
-Each subject (e.g., Jesus Christ, Saint Matthew, Saint Peter, tax collectors) must be represented as an instance of a-cd:Subject.
-</p>
+    <li>Use the ArCo Context Description ontology, specifically the class <code>a-cd:Subject</code> and the property <code>a-cd:hasSubject</code>.</li>
 
-<p>
-If a subject is not present in ArCo, we need to propose a custom IRI for this subject under:<br>
-https://w3id.org/arco/resource/Subject/
-</p>
+    <li>Each depicted figure (Jesus Christ, Saint Peter, Saint Matthew, and the tax collectors/companions) should be represented as an individual instance of <code>a-cd:Subject</code>.</li>
 
-<p>
-The subject information should be represented as direct RDF triples linking the cultural property to instances of a-cd:Subject using a-cd:hasSubject.
-</p>
+    <li>If a subject does not already exist in ArCo, propose a custom IRI under:<br>
+    <code>https://w3id.org/arco/resource/Subject/</code>
+    </li>
 
-<p>
-Also, please build the corresponding SPARQL CONSTRUCT query.
-</p>
+    <li>Link the cultural property directly to each subject using <code>a-cd:hasSubject</code>.</li>
+</ul>
 
-<p>
-Chat:
-</p>
+<p><strong>Expected Output</strong></p>
 
-<div class="expl">
+<ul>
+    <li>RDF triples in Turtle syntax.</li>
+    <li>A corresponding SPARQL <code>CONSTRUCT</code> query.</li>
+</ul>
 
-<h3>RDF Triples (ArCo-based representation)</h3>
-
-<pre>
-@prefix a-cd: <https://w3id.org/arco/ontology/context-description/> .
-@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-
-<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200705423>
-    a-cd:hasSubject <https://w3id.org/arco/resource/Subject/Jesus_Christ> ;
-    a-cd:hasSubject <https://w3id.org/arco/resource/Subject/Saint_Peter> ;
-    a-cd:hasSubject <https://w3id.org/arco/resource/Subject/Saint_Matthew_Levi> ;
-    a-cd:hasSubject <https://w3id.org/arco/resource/Subject/Tax_collectors_and_companions> .
-
-<https://w3id.org/arco/resource/Subject/Jesus_Christ>
-    rdf:type a-cd:Subject .
-
-<https://w3id.org/arco/resource/Subject/Saint_Peter>
-    rdf:type a-cd:Subject .
-
-<https://w3id.org/arco/resource/Subject/Saint_Matthew_Levi>
-    rdf:type a-cd:Subject .
-
-<https://w3id.org/arco/resource/Subject/Tax_collectors_and_companions>
-    rdf:type a-cd:Subject .
-</pre>
+</div>
 
 </div>
 
 <div class="expl">
-
-<h3>SPARQL CONSTRUCT Query</h3>
-
-<pre>
-PREFIX a-cd: <https://w3id.org/arco/ontology/context-description/>
-PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-
-CONSTRUCT {
-  <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200705423>
-      a-cd:hasSubject ?subject .
-
-  ?subject rdf:type a-cd:Subject .
-}
-WHERE {
-  VALUES ?subject {
-    <https://w3id.org/arco/resource/Subject/Jesus_Christ>
-    <https://w3id.org/arco/resource/Subject/Saint_Peter>
-    <https://w3id.org/arco/resource/Subject/Saint_Matthew_Levi>
-    <https://w3id.org/arco/resource/Subject/Tax_collectors_and_companions>
-  }
-}
-</pre>
-
-</div>
-
-</div>
 
 <h3>RDF Triples (ArCo-based representation)</h3>
 
@@ -366,60 +339,74 @@ WHERE {
 <hr>
 <h2>3. RDF Enrichment — Missing English Label (SPARQL CONSTRUCT)</h2>
 
-<!-- ONLY ONE-LINE TITLE -->
-<div class="prompt-title">
-Prompt
-</div>
-
-<!-- FULL PROMPT CONTENT MOVED HERE -->
 <div class="prompt-box">
 
-<p>
-Could you transform the following information into a SPARQL CONSTRUCT query using the ArCo ontology? Our objective is to create new RDF triples that enrich the ArCo Knowledge Graph.
-</p>
+<div class="prompt-header">
+💬 Prompt submitted to ChatGPT
+</div>
+
+<div class="prompt-content">
+
+<p><strong>Task</strong></p>
 
 <p>
-The ASK query returned FALSE, indicating that the English standardized label "The Calling of Saint Matthew" is not explicitly present in the dataset.
+Generate a <strong>SPARQL CONSTRUCT</strong> query using the ArCo ontology to enrich the knowledge graph with missing English labels for an existing cultural property.
 </p>
 
-<p>
-The catalogue record is:
-https://w3id.org/arco/resource/CatalogueRecordOA/1200705423
-</p>
+<p><strong>Background</strong></p>
 
 <p>
-This catalogue record describes a cultural property (HistoricOrArtisticProperty) in the ArCo Knowledge Graph.
+An <strong>ASK</strong> query returned <code>FALSE</code>, indicating that the English label
+<em>"The Calling of Saint Matthew"</em> is not explicitly available in the ArCo Knowledge Graph. This reveals a multilingual labeling gap that should be addressed through RDF enrichment.
 </p>
 
-<p>
-The enrichment must be applied to the actual cultural property, not to the catalogue record itself.
-</p>
+<p><strong>Resource Information</strong></p>
 
-<p>
-The following knowledge should be added:
-</p>
+<ul>
+    <li><strong>Catalogue Record:</strong><br>
+    https://w3id.org/arco/resource/CatalogueRecordOA/1200705423
+    </li>
 
-<p>
-Preferred English label: "The Calling of Saint Matthew"<br>
-Alternative English labels:<br>
-"The Calling of St. Matthew"<br>
-"The Call of Saint Matthew"<br>
-"The Vocation of Saint Matthew"<br>
-"The Calling of Levi"
-</p>
+    <li>The catalogue record describes an existing
+    <strong>HistoricOrArtisticProperty</strong>.</li>
 
-<p>
-Rules:
-<br>
-- Only existing entities must be used<br>
-- No new cultural property or catalogue record should be created<br>
-- Use rdfs:label for preferred label<br>
-- Use skos:altLabel for alternative labels
-</p>
+    <li>The enrichment must be applied to the cultural property linked from the catalogue record, not to the catalogue record itself.</li>
+</ul>
+
+<p><strong>Knowledge to Add</strong></p>
+
+<ul>
+    <li><strong>Preferred English label:</strong> "The Calling of Saint Matthew"</li>
+
+    <li><strong>Alternative English labels:</strong>
+        <ul>
+            <li>"The Calling of St. Matthew"</li>
+            <li>"The Call of Saint Matthew"</li>
+            <li>"The Vocation of Saint Matthew"</li>
+            <li>"The Calling of Levi"</li>
+        </ul>
+    </li>
+</ul>
+
+<p><strong>Requirements</strong></p>
+
+<ul>
+    <li>Retrieve the existing cultural property using
+    <code>a-cat:describesCulturalProperty</code>.</li>
+
+    <li>Do not create any new catalogue record or cultural property.</li>
+
+    <li>Use <code>rdfs:label</code> for the preferred English label.</li>
+
+    <li>Use <code>skos:altLabel</code> for the alternative English labels.</li>
+
+    <li>Return the result as a SPARQL <code>CONSTRUCT</code> query.</li>
+</ul>
 
 </div>
 
-<!-- OUTPUT SECTION -->
+</div>
+
 <div class="expl">
 
 <h3>SPARQL CONSTRUCT Query</h3>
@@ -428,7 +415,7 @@ Rules:
 PREFIX a-cat: <https://w3id.org/arco/ontology/catalogue/>
 PREFIX arco: <https://w3id.org/arco/ontology/arco/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX skos: <http://www.w3.org/2004/01/skos/core#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 
 CONSTRUCT {
   ?cp rdfs:label "The Calling of Saint Matthew"@en .
@@ -447,6 +434,8 @@ WHERE {
 </pre>
 
 </div>
+
+<hr>
 
 <footer>
 SPARQL Analysis | KE4H Project © 2026
