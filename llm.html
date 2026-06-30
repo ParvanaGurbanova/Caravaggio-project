@@ -149,17 +149,14 @@ table th{
 
 <h2>LLM Analysis</h2>
 
-<p><b>
-Chain-of-Thought (Few-shot Prompting Technique)
-</b></p>
+<h3>Chain-of-Thought Prompting for Historical Commission Attribution</h3>
 
 <p>
 In this experiment, we applied a few-shot chain-of-thought prompting strategy to evaluate how large language models handle complex historical commission chains.
 A structured example (Eiffel Tower commissioning process) was provided to the models in order to guide their reasoning format. The goal was to test whether models could correctly transfer a clear “designer → commissioner → final attribution” reasoning pattern to a more complex art-historical case.
 </p>
 
-<p><b>Promt:</b></p>
-
+<p><b>Prompt:</b></p>
 <p>
 Q1: Who designed the Eiffel Tower?
 </p>
@@ -282,7 +279,7 @@ Slightly redundant (step format restates known info), includes extraneous conten
 </p>
 <hr>
 
- <h2>LLM Output Comparison</h2>
+<h2>Experiment 2 — Depicted Subjects</h2>
 
 <p>
 For The Calling of Saint Matthew (Caravaggio) artwork, identify the main subjects (named figures or groups). For each subject, give an explanation of who they are and their role in the scene.
@@ -330,6 +327,8 @@ This group represents Matthew’s former world: everyday men engaged in tax coll
 </p>
 
 <hr>
+<p><b>ChatGPT output:</b></p>
+<img src="images/llm5.jpg" alt="ChatGPT depicted subjects output" style="width:100%; max-width:700px; border-radius:10px; box-shadow:0 8px 20px rgba(0,0,0,0.15); margin:15px 0;">
 
 <h3>Gemini:</h3>
 
@@ -355,6 +354,9 @@ Subjects: Jesus Christ, Saint Peter, Saint Matthew (Levi), the tax collectors / 
 </p>
 
 <hr>
+<p><b>Gemini output:</b></p>
+
+<img src="images/llm6.jpg" alt="Gemini depicted subjects output" style="width:100%; max-width:700px; border-radius:10px; box-shadow:0 8px 20px rgba(0,0,0,0.15); margin:15px 0;">
 
 <h3>Comparison Table</h3>
 
@@ -406,8 +408,7 @@ ChatGPT provides a more cohesive interpretive reading, focusing on thematic unit
     
 <h3>Experiment 3 — Alternative English Title Verification</h3>
 
-<p><b>Promt:</b></p>
-
+<p><b>Prompt:</b></p>
 <p>
 Does The Calling of Saint Matthew by Caravaggio have any alternative English title?
 </p>
