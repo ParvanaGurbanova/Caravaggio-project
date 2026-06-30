@@ -220,59 +220,59 @@ This avoids forcing a direct agent–work link and preserves provenance structur
 <h3>3. RDF Triples (Turtle)</h3>
 
 <pre>
-@prefix a-cd: <https://w3id.org/arco/ontology/context-description/> .
+@prefix acd: &lt;https://w3id.org/arco/ontology/context-description/&gt; .
+@prefix a-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt; .
 
-<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200705423>
+&lt;https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200705423&gt;
    a-cd:hasContextualEvent _:commission_event_1 .
 
 _:commission_event_1
    a a-cd:CommissionAttributionEvent ;
-   a-cd:hasAgent <https://w3id.org/arco/resource/Agent/Cardinal_Matthieu_Cointerel> ;
-   a-cd:concernsCulturalProperty <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200705423> .
+   a-cd:hasAgent &lt;https://w3id.org/arco/resource/Agent/Cardinal_Matthieu_Cointerel&gt; ;
+   a-cd:concernsCulturalProperty &lt;https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200705423&gt; .
 </pre>
-
 </div>
 
 
 <div class="expl">
 
 <h3>4. SPARQL CONSTRUCT Query</h3>
+This query generates the same graph pattern from a simple assertion pattern (e.g., from a textual fact or upstream dataset).
 
 <pre>
-PREFIX a-cd: <https://w3id.org/arco/ontology/context-description/>
+PREFIX acd: &lt;https://w3id.org/arco/ontology/context-description/&gt;
 
 CONSTRUCT {
- ?work a-cd:hasContextualEvent ?event .
- ?event a a-cd:CommissionAttributionEvent .
- ?event a-cd:hasAgent ?agent .
- ?event a-cd:concernsCulturalProperty ?work .
+  ?work acd:hasContextualEvent ?event .
+  ?event a acd:CommissionAttributionEvent .
+  ?event acd:hasAgent ?agent .
+  ?event acd:concernsCulturalProperty ?work .
 }
 WHERE {
- VALUES ?work {
-   <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200705423>
- }
+  VALUES ?work {
+    &lt;https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200705423&gt;
+  }
 
- VALUES ?agent {
-   <https://w3id.org/arco/resource/Agent/Cardinal_Matthieu_Cointerel>
- }
+  VALUES ?agent {
+    &lt;https://w3id.org/arco/resource/Agent/Cardinal_Matthieu_Cointerel&gt;
+  }
 
- BIND (IRI(CONCAT(STR(?work), "/commissionEvent")) AS ?event)
+  BIND (IRI(CONCAT(STR(?work), "/commissionEvent")) AS ?event)
 }
 </pre>
 
 </div>
 
 
-<div class="expl">
 
 <h3>5. Notes on design choices</h3>
 
 <pre>
-The event-centric modeling aligns with ArCo’s emphasis on contextualized cultural heritage facts.
+- The event-centric modeling aligns with ArCo’s emphasis on contextualized cultural heritage facts.
 
-The agent is modeled as a patron/commissioner role via participation in the event rather than a direct property link.
+- The agent is modeled as a patron/commissioner role via participation in the event rather than a direct property link.
 
-The event URI is deterministically derived from the work URI to ensure reproducibility.
+- The event URI is deterministically derived from the work URI to ensure reproducibility.
 </pre>
 
 <img src="images/rdf1.jpg" class="query-img" alt="ChatGPT">
@@ -280,84 +280,122 @@ The event URI is deterministically derived from the work URI to ensure reproduci
 
 </div>
 
+
 <div class="expl">
 
-<h3>Gemini</h3>
+<h3>Gemini:</h3>
+
+<p>
+To accurately model this relationship using the ArCo (Architecture of Context) Ontologies, we need to rely on the context-description module (a-cd). As shown in the ontology documentation, ArCo represents commissioning as an n-ary relation through the class
+<b>a-cd:Commission</b> (which is a subclass of <b>a-cd:Interpretation</b>).
+</p>
+
+<p>
+Let's break down the modeling strategy step by step.
+</p>
+
+<h4>Step-by-Step Thinking</h4>
+
+<p><b>Identify the Main Entities & IRIs:</b></p>
+
+<ul>
+  <li>
+    <b>Cultural Property:</b>
+    https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200705423
+    (Representing The Calling of Saint Matthew)
+  </li>
+
+  <li>
+    <b>Commissioner (Agent):</b>
+    Since Cardinal Matthieu Cointerel is not present in ArCo, we will propose a custom IRI under a local or custom domain:
+    https://example.org/agent/matthieu-cointerel
+  </li>
+
+  <li>
+    <b>Commission Event (The Situation):</b>
+    Because a commission links a property, a time, a role, and an agent together, ArCo instantiates a proxy node of type
+    <b>a-cd:Commission</b>.
+    Let's create a custom IRI for this transaction instance:
+    https://example.org/commission/1200705423-commission
+  </li>
+</ul>
+
+<p><b>Determine ArCo Properties:</b></p>
+
+<ul>
+  <li>a-cd:isCommissionOf → connects the commission node back to the cultural property</li>
+  <li>a-cd:hasCommittent → connects the commission node to the agent</li>
+</ul>
+
+<p><b>Prefix Definition:</b></p>
 
 <pre>
-To accurately model this relationship using the ArCo (Architecture of Context) Ontologies, we need to rely on the context-description module (a-cd). As shown in the ontology documentation, ArCo represents commissioning as an n-ary relation through the class a-cd:Commission (which is a subclass of a-cd:Interpretation).
-Let's break down the modeling strategy step by step.
-Step-by-Step Thinking
-Identify the Main Entities & IRIs:
-Cultural Property: https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200705423 (Representing The Calling of Saint Matthew).
-Commissioner (Agent): Since Cardinal Matthieu Cointerel is not present in ArCo, we will propose a custom IRI under a local or custom domain: https://example.org/agent/matthieu-cointerel.
-Commission Event (The Situation): Because a commission links a property, a time, a role, and an agent together, ArCo instantiates a proxy node of type a-cd:Commission. Let's create a custom IRI for this transaction instance: https://example.org/commission/1200705423-commission.
-Determine ArCo Properties:
-a-cd:isCommissionOf: Connects the Commission situation node back to the cultural property.
-a-cd:hasCommittent: Connects the Commission situation node to the l0:Agent (the commissioner).
-Prefix Definition:
-arco-mp: <https://w3id.org/arco/ontology/movable-property/>
-a-cd: <https://w3id.org/arco/ontology/context-description/>
-l0: <https://w3id.org/ontology/l0/>
-1. RDF Triples (Turtle Format)
-@prefix arco-cd: <https://w3id.org/arco/ontology/context-description/> .
-@prefix l0: <https://w3id.org/ontology/l0/> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix ex: <https://example.org/> .
+arco-mp: &lt;https://w3id.org/arco/ontology/movable-property/&gt;
+a-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt;
+l0: &lt;https://w3id.org/ontology/l0/&gt;
+</pre>
+
+<h4>1. RDF Triples (Turtle Format)</h4>
+
+<pre>
+@prefix arco-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt; .
+@prefix l0: &lt;https://w3id.org/ontology/l0/&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+@prefix ex: &lt;https://example.org/&gt; .
 
 # The Cultural Property
-<https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200705423> a arco-cd:CulturalEntity ;
+&lt;https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200705423&gt;
+    a arco-cd:CulturalEntity ;
     rdfs:label "The Calling of Saint Matthew by Caravaggio" .
 
 # The Commission Event/Situation
-ex:commission-1200705423 a arco-cd:Commission ;
+ex:commission-1200705423
+    a arco-cd:Commission ;
     rdfs:label "Original commission for The Calling of Saint Matthew from the Contarelli Chapel patronage" ;
-    arco-cd:isCommissionOf <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200705423> ;
+    arco-cd:isCommissionOf &lt;https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200705423&gt; ;
     arco-cd:hasCommittent ex:agent-matthieu-cointerel .
 
 # The Custom Agent (Commissioner)
-ex:agent-matthieu-cointerel a l0:Agent ;
+ex:agent-matthieu-cointerel
+    a l0:Agent ;
     rdfs:label "Cardinal Matthieu Cointerel (Matteo Contarelli)" .
 </pre>
 
-</div>
-
-
-<div class="expl">
-
-<h3>2. SPARQL CONSTRUCT Query</h3>
+<h4>2. SPARQL CONSTRUCT Query</h4>
 
 <pre>
-PREFIX arco-cd: <https://w3id.org/arco/ontology/context-description/>
-PREFIX l0: <https://w3id.org/ontology/l0/>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX ex: <https://example.org/>
+PREFIX arco-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt;
+PREFIX l0: &lt;https://w3id.org/ontology/l0/&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX ex: &lt;https://example.org/&gt;
 
 CONSTRUCT {
-    ?culturalProperty a arco-cd:CulturalEntity ;
+  ?culturalProperty a arco-cd:CulturalEntity ;
         rdfs:label "The Calling of Saint Matthew by Caravaggio" .
 
-    ?commissionInstance a arco-cd:Commission ;
+  ?commissionInstance a arco-cd:Commission ;
         rdfs:label "Original commission for The Calling of Saint Matthew from the Contarelli Chapel patronage" ;
         arco-cd:isCommissionOf ?culturalProperty ;
         arco-cd:hasCommittent ?customAgent .
 
-    ?customAgent a l0:Agent ;
+  ?customAgent a l0:Agent ;
         rdfs:label "Cardinal Matthieu Cointerel (Matteo Contarelli)" .
 }
 WHERE {
-    # Bind the specific variables to build the targeted relationship graph
-    VALUES ?culturalProperty { <https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200705423> }
-    BIND(ex:commission-1200705423 AS ?commissionInstance)
-    BIND(ex:agent-matthieu-cointerel AS ?customAgent)
+  VALUES ?culturalProperty {
+    &lt;https://w3id.org/arco/resource/HistoricOrArtisticProperty/1200705423&gt;
+  }
+
+  BIND(ex:commission-1200705423 AS ?commissionInstance)
+  BIND(ex:agent-matthieu-cointerel AS ?customAgent)
 }
 </pre>
 <img src="images/rdf3.jpg" class="query-img" alt="Gemini">
 <img src="images/rdf4.jpg" class="query-img" alt="Gemini">
 
 </div>
-<h2>2. RDF Triples — Depicted Subjects (ArCo Context Description)</h2>
+    <h2>2. RDF Triples — Depicted Subjects (ArCo Context Description)</h2>
 
 <div class="prompt-content">
 
