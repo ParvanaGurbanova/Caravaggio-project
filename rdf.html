@@ -154,10 +154,6 @@ footer{
 
 <div class="prompt">
 
-<div class="prompt-header">
-LLM Prompt
-</div>
-
 Could you create RDF triples using ArCo ontologies for the following information?
 
 "The original commission for The Calling of Saint Matthew by Caravaggio came from the Contarelli Chapel patronage established by Cardinal Matthieu Cointerel (Matteo Contarelli)."
@@ -226,13 +222,7 @@ WHERE {
 
 </div>
 
-</div>
 <h2>2. RDF Triples — Depicted Subjects (ArCo Context Description)</h2>
-
-
-<div class="prompt-header">
-💬 Prompt submitted to ChatGPT
-</div>
 
 <div class="prompt-content">
 
@@ -275,8 +265,6 @@ Create RDF triples using the <strong>ArCo ontology</strong> for the depicted sub
     <li>RDF triples in Turtle syntax.</li>
     <li>A corresponding SPARQL <code>CONSTRUCT</code> query.</li>
 </ul>
-
-</div>
 
 </div>
 
@@ -336,12 +324,8 @@ WHERE {
 </div>
 
 <hr>
+
 <h2>3. RDF Enrichment — Missing English Label (SPARQL CONSTRUCT)</h2>
-
-
-<div class="prompt-header">
-💬 Prompt submitted to ChatGPT
-</div>
 
 <div class="prompt-content">
 
@@ -403,8 +387,6 @@ An <strong>ASK</strong> query returned <code>FALSE</code>, indicating that the E
 
 </div>
 
-</div>
-
 <div class="expl">
 
 <h3>SPARQL CONSTRUCT Query</h3>
@@ -417,7 +399,6 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 
 CONSTRUCT {
   ?cp rdfs:label "The Calling of Saint Matthew"@en .
-
   ?cp skos:altLabel "The Calling of St. Matthew"@en .
   ?cp skos:altLabel "The Call of Saint Matthew"@en .
   ?cp skos:altLabel "The Vocation of Saint Matthew"@en .
@@ -430,6 +411,8 @@ WHERE {
   ?cp a arco:HistoricOrArtisticProperty .
 }
 </pre>
+
+</div>
 
 </div>
 
