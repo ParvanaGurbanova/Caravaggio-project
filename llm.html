@@ -282,55 +282,141 @@ Slightly redundant (step format restates known info), includes extraneous conten
 </p>
 <hr>
 
-    <h3>Experiment 2 — Subject Identification using LLMs</h3>
+  <h3>Experiment 2 — LLM Subject Identification</h3>
 
 <p>
-For <i>The Calling of Saint Matthew</i> (Caravaggio), we asked large language models to identify the main depicted subjects (named figures or groups) in the painting. The goal was to evaluate how well different models interpret iconography and assign narrative roles to visual elements.
-</p>
-
-<p><b>Prompt:</b></p>
-
-<div class="expl">
 For The Calling of Saint Matthew (Caravaggio) artwork, identify the main subjects (named figures or groups). For each subject, give an explanation of who they are and their role in the scene.
-</div>
-
-<h4>ChatGPT Response</h4>
-
-<p>
-ChatGPT identified Jesus Christ, Saint Peter, Saint Matthew (Levi), and tax collectors/companions as the main subjects. The response focused on thematic interpretation, emphasizing spiritual transformation, divine calling, and narrative unity in the composition.
 </p>
 
-<h4>Gemini Response</h4>
+<p><b>Example</b></p>
 
 <p>
-Gemini provided a more detailed iconographic breakdown, explicitly describing gesture symbolism, spatial positioning, and psychological reactions of each figure. It offered finer-grained visual analysis of the painting.
+Artwork: The School of Athens (Raphael)
 </p>
 
-<h3>Comparison Summary</h3>
+<p>
+Subjects: Plato, Aristotle, philosophers
+</p>
 
-<table>
+<p>
+Plato: ancient Greek philosopher representing idealism; shown pointing upward to symbolize abstract, higher truth.
+</p>
+
+<p>
+Aristotle: ancient Greek philosopher representing empiricism; shown gesturing horizontally to symbolize observation of the physical world.
+</p>
+
+<p>
+Philosophers: surrounding figures engaged in discussion and study, representing the pursuit and exchange of knowledge.
+</p>
+
+<hr>
+
+<p><b>ChatGPT:</b></p>
+
+<p>
+Artwork: The Calling of Saint Matthew (Caravaggio)<br>
+Subjects: Jesus Christ, Saint Peter, Saint Matthew (Levi), tax collectors/companions at the table
+</p>
+
+<p>
+Jesus Christ<br>
+Jesus is the central divine figure initiating the calling. He extends his hand toward Matthew in a gesture that mirrors creation itself, symbolizing divine authority and grace. His role in the scene is to identify Matthew and summon him away from his former life as a tax collector, representing spiritual awakening and redemption.
+</p>
+
+<p>
+Saint Peter<br>
+Saint Peter stands slightly in front of Jesus, acting as a mediator and witness to the calling. He mirrors Jesus’ gesture in a more grounded, human way, helping direct attention toward Matthew. His role emphasizes the continuity of Christ’s mission through his apostles and the early formation of the Church.
+</p>
+
+<p>
+Saint Matthew (Levi)<br>
+Matthew is seated at the table with other tax collectors, initially portrayed as an ordinary, worldly man engaged in counting money. He reacts to Jesus’ call with surprise and uncertainty, pointing to himself as if asking “Me?” His role is the focal point of transformation—he represents the moment of conversion from a life of material focus to spiritual vocation.
+</p>
+
+<p>
+Tax collectors and companions (group of men at the table)<br>
+This group represents Matthew’s former world: everyday men engaged in tax collection, money handling, and casual conversation. Some react with confusion, others with curiosity or indifference, emphasizing different human responses to divine intervention. Their role is to contrast the material, secular life with the spiritual call Matthew is about to accept.
+</p>
+
+<hr>
+
+<p><b>Gemini:</b></p>
+
+<p>
+Artwork: The Calling of Saint Matthew (Caravaggio)<br>
+Subjects: Jesus Christ, Saint Peter, Saint Matthew (Levi), the tax collectors / companions
+</p>
+
+<p>
+Jesus Christ: the central divine figure of the New Testament; shown on the right side of the painting partially cloaked in shadow, extending his hand toward the table in a powerful gesture that mirrors Michelangelo's Creation of Adam, symbolizing the divine command and call to discipleship.
+</p>
+
+<p>
+Saint Peter: the leading apostle of Jesus; stands in front of Jesus, physically bridging the gap between Christ and the world of the tax collectors. His hand mimics Christ's gesture, representing the earthly authority of the Church reinforcing the divine summons.
+</p>
+
+<p>
+Saint Matthew: a Jewish tax collector (also known as Levi) working for the Roman authorities; sits at the center of the table and points to himself with an expression of disbelief, caught in the exact psychological moment of sudden spiritual awakening and questioning if he is truly the one being called.
+</p>
+
+<p>
+The tax collectors / companions: the four other figures seated at the custom house table; they represent varying worldly reactions to the divine presence. The two younger men look up in curiosity and engagement, while the two older men remain hunched over, completely absorbed in counting the money, blind to the spiritual light entering the room.
+</p>
+
+<hr>
+
+<h3>Here’s a structured comparison of the two responses:</h3>
+
+<table border="1" cellpadding="10" cellspacing="0">
+
 <tr>
-<th>Model</th>
+<th>LLM</th>
+<th>Output Summary</th>
 <th>Strengths</th>
 <th>Limitations</th>
 </tr>
 
 <tr>
-<td>ChatGPT</td>
-<td>Clear structure, strong thematic interpretation, readable narrative flow</td>
-<td>Less visual and iconographic detail</td>
+<td><b>Gemini</b></td>
+<td>
+Very detailed, almost encyclopedic breakdown of each figure (Jesus, Peter, Matthew, companions), with strong emphasis on gesture symbolism and narrative psychology.
+</td>
+<td>
+Very precise iconographic identification; clear explanation of gestures; strong focus on compositional relationships; good psychological reading (especially Matthew’s “moment of awakening”).
+</td>
+<td>
+Slightly verbose and repetitive; reads more like annotated notes than a unified interpretation; limited sense of overall artistic/visual analysis (light, composition, Caravaggio’s style).
+</td>
 </tr>
 
 <tr>
-<td>Gemini</td>
-<td>Highly detailed visual and gesture-based analysis</td>
-<td>More verbose and fragmented explanation</td>
+<td><b>ChatGPT</b></td>
+<td>
+Structured, interpretive breakdown focusing on meaning of each figure within themes of calling, redemption, and transformation.
+</td>
+<td>
+Clear organization; better narrative flow; stronger emphasis on thematic unity (conversion, spiritual awakening); more readable and less fragmented.
+</td>
+<td>
+Less granular detail in describing the painting’s iconography; less emphasis on subtle visual relationships; fewer concrete references to gesture mirroring and compositional staging.
+</td>
 </tr>
+
 </table>
 
+<hr>
+
+<p><b>Overall comparison</b></p>
+
 <p>
-Overall, ChatGPT prioritizes conceptual clarity and narrative cohesion, while Gemini emphasizes detailed visual and iconographic precision.
+Gemini leans toward high-detail iconographic explanation, almost like a guided museum label for each character. It excels in precision but feels segmented.
 </p>
+
+<p>
+ChatGPT provides a more cohesive interpretive reading, focusing on thematic unity and readability, but sacrifices some micro-level visual analysis.
+</p>
+    
 <h3>Experiment 3 — Alternative English Title Verification</h3>
 
 <p><b>Promt:</b></p>
